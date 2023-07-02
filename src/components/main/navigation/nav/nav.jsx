@@ -4,7 +4,7 @@ import Menu from '../navMenu/NavMenu'
 
 export default function Nav() {
   return (
-    <nav classNameName="main__nav nav">
+    <nav className="main__nav nav">
       <Logo />
       <Burger />
       <Menu />

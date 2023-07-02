@@ -1,7 +1,8 @@
 import Search from '../search_bar/search'
 import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
-import { SideBar } from '../side_menu/sideBar'
+import SideBar from '../side_menu/sideBar'
+import ControlBar from '../../player/playerbar'
 
 export default function CenterBlock() {
   return (
@@ -16,12 +17,13 @@ export default function CenterBlock() {
           <div className="playlist-title__col col03">АЛЬБОМ</div>
           <div className="playlist-title__col col04">
             <svg className="playlist-title__svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-watch" />
             </svg>
           </div>
         </div>
         <Playlist />
         <SideBar />
+        <ControlBar />
       </div>
     </div>
   )

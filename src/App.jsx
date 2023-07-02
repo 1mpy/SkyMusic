@@ -1,13 +1,13 @@
-// import SideBar from './components/main/side_menu/sideBar'
 import Footer from './components/main/footer/footer'
 import MainWindow from './components/main/main_window/MainWindow'
-import SideBar from './components/main/side_menu/sideBar'
+// import SideBar from './components/main/side_menu/sideBar'
+import  './style.css'
 
 function App() {
   return (
-    <div classNameName="App container">
+    <div className="App container">
       <MainWindow />
-      <SideBar />
+      {/* <SideBar /> */}
       <Footer />
     </div>
   )

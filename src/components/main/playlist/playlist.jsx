@@ -6,12 +6,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                Guilt <span className="track__title-span"/>
+                Guilt <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -27,7 +27,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">4:44</span>
           </div>
@@ -39,12 +39,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                Elektro <span className="track__title-span"/>
+                Elektro <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">2:22</span>
           </div>
@@ -72,12 +72,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                I’m Fire <span className="track__title-span"/>
+                I’m Fire <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">2:22</span>
           </div>
@@ -105,7 +105,7 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
@@ -126,7 +126,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">4:12</span>
           </div>
@@ -138,7 +138,7 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
@@ -159,7 +159,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">2:54</span>
           </div>
@@ -171,7 +171,7 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
@@ -193,7 +193,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">5:20</span>
           </div>
@@ -205,7 +205,7 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
@@ -227,7 +227,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">3:41</span>
           </div>
@@ -239,12 +239,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                Knives n Cherries <span className="track__title-span"/>
+                Knives n Cherries <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -260,7 +260,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">1:48</span>
           </div>
@@ -272,13 +272,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                How Deep Is Your Love{' '}
-                <span className="track__title-span"/>
+                How Deep Is Your Love <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -294,7 +293,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">3:32</span>
           </div>
@@ -306,12 +305,12 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
-                Morena <span className="track__title-span"/>
+                Morena <span className="track__title-span" />
               </a>
             </div>
           </div>
@@ -327,7 +326,7 @@ export default function Playlist() {
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
             <span className="track__time-text">3:36</span>
           </div>
@@ -339,27 +338,31 @@ export default function Playlist() {
           <div className="track__title">
             <div className="track__title-image">
               <svg className="track__title-svg" alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"/>
+                <use xlinkHref="img/icon/sprite.svg#icon-note" />
               </svg>
             </div>
             <div className="track__title-text">
               <a className="track__title-link" href="http://">
                 {' '}
-                <span className="track__title-span"/>
+                <span className="track__title-span" />
               </a>
             </div>
           </div>
           <div className="track__author">
-            <a className="track__author-link" href="http://"/>
+            <a className="track__author-link" href="http://">
+              fgb
+            </a>
           </div>
           <div className="track__album">
-            <a className="track__album-link" href="http://"/>
+            <a className="track__album-link" href="http://">
+              dfg
+            </a>
           </div>
           <div className="track__time">
             <svg className="track__time-svg" alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like"/>
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </svg>
-            <span className="track__time-text"></span>
+            <span className="track__time-text" />
           </div>
         </div>
       </div>

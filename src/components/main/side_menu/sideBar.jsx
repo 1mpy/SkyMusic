@@ -4,12 +4,12 @@ export default function SideBar() {
     <div className="main__sidebar sidebar">
       <div className="sidebar__personal">
         <p className="sidebar__personal-name">{user?.name}</p>
-        <div className="sidebar__avatar"></div>
+        <div className="sidebar__avatar" />
       </div>
       <div className="sidebar__block">
         <div className="sidebar__list">
           <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+            <a className="sidebar__link" href="/#">
               <img
                 className="sidebar__img"
                 src="img/playlist01.png"
@@ -18,7 +18,7 @@ export default function SideBar() {
             </a>
           </div>
           <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+            <a className="sidebar__link" href="/#">
               <img
                 className="sidebar__img"
                 src="img/playlist02.png"
@@ -27,7 +27,7 @@ export default function SideBar() {
             </a>
           </div>
           <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+            <a className="sidebar__link" href="/#">
               <img
                 className="sidebar__img"
                 src="img/playlist03.png"
