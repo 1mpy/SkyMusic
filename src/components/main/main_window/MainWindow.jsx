@@ -1,13 +1,11 @@
-import CenterBlock from "../center_block/center"
-import Nav from "../navigation/nav/nav"
+import CenterBlock from '../center_block/center'
+import Nav from '../navigation/nav/nav'
 
-
-
-export function MainWindow() {
-    return (
-      <main className="main">
-        <Nav/>
-        <CenterBlock/>
-      </main>
-    )
-  }
+export default function MainWindow() {
+  return (
+    <main classNameName="main">
+      <Nav />
+      <CenterBlock />
+    </main>
+  )
+}

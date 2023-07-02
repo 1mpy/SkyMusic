@@ -1,18 +1,18 @@
 function MenuItem(props) {
   return (
-    <li className="menu__item">
-      <a href="http://" className="menu__link">
+    <li classNameName="menu__item">
+      <a href="http://" classNameName="menu__link">
         {props.name}
       </a>
     </li>
   )
 }
 
-export function Menu() {
+export default function Menu() {
   const links = ['Главное', 'Мой плейлист', 'Войти']
   return (
-    <div className="nav__menu menu">
-      <ul className="menu__list">
+    <div classNameName="nav__menu menu">
+      <ul classNameName="menu__list">
         {links.map((link) => (
           <MenuItem key={link} name={link} />
         ))}
