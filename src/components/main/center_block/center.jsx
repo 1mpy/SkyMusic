@@ -3,7 +3,9 @@ import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
 import ControlBar from '../../player/playerbar'
 
-export default function CenterBlock() {
+export default function CenterBlock({loading}) {
+
+
   return (
     <div className="main__centerblock centerblock">
       <Search />
@@ -20,8 +22,10 @@ export default function CenterBlock() {
             </svg>
           </div>
         </div>
-        <Playlist />
-        <ControlBar />
+
+          <Playlist loading={loading} />
+          <ControlBar loading={loading} />
+
       </div>
     </div>
   )

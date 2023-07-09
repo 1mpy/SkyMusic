@@ -3,6 +3,7 @@ import MainWindow from './components/main/main_window/MainWindow'
 import './style.css'
 
 function App() {
+
   return (
     <div className="App container">
       <MainWindow />

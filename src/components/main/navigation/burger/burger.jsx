@@ -6,20 +6,20 @@ export default function BurgerToMenu() {
   const toggleVisibility = () => {
     setVisible(!visible)
   }
-
   return (
-    <div
-      className="nav__burger burger"
-      onClick={toggleVisibility}
-      onKeyDown={toggleVisibility}
-      role="button"
-      tabIndex="0"
-    >
-      <span className="burger__line" />
-      <span className="burger__line" />
-      <span className="burger__line" />
+    <>
+      <div
+        className="nav__burger burger"
+        onClick={toggleVisibility}
+        onKeyDown={toggleVisibility}
+        role="button"
+        tabIndex="0"
+      >
+        <span className="burger__line" />
+        <span className="burger__line" />
+        <span className="burger__line" />
+      </div>
       {!visible && <Menu />}
-    </div>
+    </>
   )
 }
-

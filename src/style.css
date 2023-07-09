@@ -118,6 +118,10 @@ body {
   padding: 20px 40px 20px 111px;
 }
 
+.skeleton {
+  background-color: #a53939;
+}
+
 .main__sidebar {
   max-width: 418px;
   padding: 20px 90px 20px 78px;
@@ -324,6 +328,7 @@ body {
   background-color: rgb(49, 49, 49);
   top: 50px;
   overflow-y: scroll;
+  z-index: 10;
 }
 
 #style-1::-webkit-scrollbar {
@@ -444,6 +449,10 @@ body {
   width: 447px;
 }
 
+.track__title-text {
+  width: 100%;
+}
+
 .track__title-image {
   width: 51px;
   height: 51px;
@@ -486,9 +495,9 @@ body {
 
 .track__author {
   width: 321px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /* display: -webkit-box; */
+  /* display: -ms-flexbox; */
+  /* display: flex; */
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
@@ -617,7 +626,8 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(28, 28, 28, 0.5);
+  background: rgb(28 28 28);
+  z-index: 10;
 }
 
 .bar__content {
@@ -647,7 +657,7 @@ body {
   flex-direction: row;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .bar__player {
@@ -675,6 +685,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
   padding: 0 92px 0 0;
+  margin-left: auto;
 }
 
 .player__controls {
