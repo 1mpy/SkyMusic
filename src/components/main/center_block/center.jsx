@@ -1,7 +1,6 @@
 import Search from '../search_bar/search'
 import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
-import SideBar from '../side_menu/sideBar'
 import ControlBar from '../../player/playerbar'
 
 export default function CenterBlock() {
@@ -22,7 +21,6 @@ export default function CenterBlock() {
           </div>
         </div>
         <Playlist />
-        <SideBar />
         <ControlBar />
       </div>
     </div>
