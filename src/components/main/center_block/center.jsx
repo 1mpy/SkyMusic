@@ -3,7 +3,7 @@ import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
 import ControlBar from '../../player/playerbar'
 
-export default function CenterBlock({loading}) {
+export default function CenterBlock(props) {
 
 
   return (
@@ -23,8 +23,8 @@ export default function CenterBlock({loading}) {
           </div>
         </div>
 
-          <Playlist loading={loading} />
-          <ControlBar loading={loading} />
+          <Playlist loading={props.loading} />
+          <ControlBar loading={props.loading} />
 
       </div>
     </div>

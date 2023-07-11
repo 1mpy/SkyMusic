@@ -2,7 +2,6 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function PlaylistItem(props) {
-  //   list = [{ title: '', author: '', album: '', time: 'time' }]
   return (
     <div className="playlist__item">
       <div className="playlist__track track">

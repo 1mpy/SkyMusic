@@ -3,7 +3,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function SideBar(props) {
   const user = { name: 'Sergey Ivanov' }
-  console.log(props)
+  // console.log(props)
   return (
     <div className="main__sidebar sidebar">
       <div className="sidebar__personal">

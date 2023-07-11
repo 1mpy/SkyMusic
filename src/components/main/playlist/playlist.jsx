@@ -1,6 +1,6 @@
 import PlaylistItem from './playlistitem'
 
-export default function Playlist({ loading }) {
+export default function Playlist(props) {
   const list = [
     { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
     {
@@ -72,7 +72,7 @@ export default function Playlist({ loading }) {
           author={item?.author}
           album={item?.album}
           time={item?.time}
-          loading={loading}
+          loading={props.loading}
         />
       ))}
     </div>

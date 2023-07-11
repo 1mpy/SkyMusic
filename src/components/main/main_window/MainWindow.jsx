@@ -9,7 +9,7 @@ export default function MainWindow() {
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setTimeout(() => {
-      setLoading(true)
+      setLoading(false)
     }, 5000)
   }, [])
   return (
