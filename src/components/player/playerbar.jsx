@@ -1,11 +1,14 @@
-export default function ControlBar() {
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+export default function ControlBar({ loading }) {
   return (
     <div className="bar">
       <div className="bar__content">
         <div className="bar__player-progress" />
         <div className="bar__player-block">
           <PlayerControls />
-          <TrackInfo />
+          <TrackInfo loading={loading} />
           <Volume />
         </div>
       </div>
@@ -13,24 +16,36 @@ export default function ControlBar() {
   )
 }
 
-export function TrackInfo() {
+export function TrackInfo({ loading }) {
   return (
     <div className="player__track-play track-play">
       <div className="track-play__contain">
         <div className="track-play__image">
-          <svg className="track-play__svg" alt="music">
-            <use xlinkHref="img/icon/sprite.svg#icon-note" />
-          </svg>
+          {loading ? (
+            <Skeleton width="51px" height="51px" />
+          ) : (
+            <svg className="track-play__svg" alt="music">
+              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+            </svg>
+          )}
         </div>
         <div className="track-play__author">
-          <a className="track-play__author-link" href="http://">
-            Ты та...
-          </a>
+          {loading ? (
+            <Skeleton />
+          ) : (
+            <a className="track-play__author-link" href="http://">
+              Ты та...
+            </a>
+          )}
         </div>
         <div className="track-play__album">
-          <a className="track-play__album-link" href="http://">
-            Баста
-          </a>
+          {loading ? (
+            <Skeleton />
+          ) : (
+            <a className="track-play__album-link" href="http://">
+              Баста
+            </a>
+          )}
         </div>
       </div>
       <div className="track-play__like-dis">
