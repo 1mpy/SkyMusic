@@ -1,48 +1,8 @@
 import { useState } from 'react'
-import { styled } from 'styled-components'
-
-const StyledFilterBox = styled.div`
-  position: absolute;
-  width: 248px;
-  height: 305px;
-  border-radius: 12px;
-  padding: 34px;
-  background-color: rgb(49, 49, 49);
-  top: 50px;
-  overflow-y: scroll;
-  z-index: 10;
-`
-
-const StyledCenterblockFilter = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 51px;
-`
-
-const StyledFilterTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-`
-
-const StyledFilterWrapper = styled.div`
-  position: relative;
-  margin-right: 10px;
-`
 
 export function FilterType(props) {
   return (
-    <StyledFilterBox id="style-1">
+    <div className="filter__box" id="style-1">
       <ul className="filter__list">
         {props.list.map((item) => (
           <li className="filter__item" key={item}>
@@ -50,7 +10,7 @@ export function FilterType(props) {
           </li>
         ))}
       </ul>
-    </StyledFilterBox>
+    </div>
   )
 }
 
@@ -97,9 +57,9 @@ export default function Filter() {
   }
 
   return (
-    <StyledCenterblockFilter>
-      <StyledFilterTitle>Искать по:</StyledFilterTitle>
-      <StyledFilterWrapper>
+    <div className="centerblock__filter filter">
+      <div className="filter__title">Искать по:</div>
+      <div className="filter__wrapper">
         <div
           className={
             SelectedFilter === 'author'
@@ -114,8 +74,8 @@ export default function Filter() {
           исполнителю
         </div>
         {SelectedFilter === 'author' && <FilterType list={Authors} />}
-      </StyledFilterWrapper>
-      <StyledFilterWrapper>
+      </div>
+      <div className="filter__wrapper">
         <div
           className={
             SelectedFilter === 'bytime'
@@ -130,8 +90,8 @@ export default function Filter() {
           году выпуска
         </div>
         {SelectedFilter === 'bytime' && <FilterType list={ByTime} />}
-      </StyledFilterWrapper>
-      <StyledFilterWrapper>
+      </div>
+      <div className="filter__wrapper">
         <div
           className={
             SelectedFilter === 'genre'
@@ -146,7 +106,7 @@ export default function Filter() {
           жанру
         </div>
         {SelectedFilter === 'genre' && <FilterType list={Genres} />}
-      </StyledFilterWrapper>
-    </StyledCenterblockFilter>
+      </div>
+    </div>
   )
 }

@@ -1,12 +1,14 @@
+import * as S from "./nav.styles"
 import Logo from '../logo/logo'
 import Burger from '../burger/burger'
-// import Menu from '../navMenu/NavMenu'
+
+
 
 export default function Nav() {
   return (
-    <nav className="main__nav nav">
+    <S.MainNav>
       <Logo />
       <Burger />
-    </nav>
+    </S.MainNav>
   )
 }
