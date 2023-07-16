@@ -3,7 +3,7 @@ import Search from '../search_bar/search'
 import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
 
-// import ControlBar from '../../player/playerbar' !!!!ВЫКЛЮЧЕН ПЛЕЕР!!!!
+import ControlBar from '../../player/playerbar' 
 
 const StyledCenterblock = styled.div`
   width: auto;
@@ -66,6 +66,7 @@ const StyledContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
+  ${(props) => (props.$textAlign === 'end' ? 'text-align:end;' : '')}
 `
 
 const StyledPlaylistTitleSvg = styled.svg`
@@ -95,7 +96,7 @@ export default function CenterBlock(props) {
           </StyledContentPlaylist>
         </StyledContentTitle>
         <Playlist loading={props.loading} />
-        {/* <ControlBar loading={props.loading} /> */} !!!!ВЫКЛЮЧЕН ПЛЕЕР!!!!
+        <ControlBar loading={props.loading} /> !!!!ВЫКЛЮЧЕН ПЛЕЕР!!!!
       </StyledCenterblockContent>
     </StyledCenterblock>
   )

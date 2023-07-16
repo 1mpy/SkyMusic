@@ -1,6 +1,6 @@
-import { styled } from 'styled-components'
+import { styled, css } from 'styled-components'
 
-export const StyledBar = styled.div`
+export const Bar = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -8,7 +8,7 @@ export const StyledBar = styled.div`
   background: rgb(28 28 28);
   z-index: 10;
 `
-export const StyledBarContent = styled.div`
+export const BarContent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,13 +18,13 @@ export const StyledBarContent = styled.div`
   flex-direction: column;
 `
 
-export const StyledBarPlayerProgress = styled.div`
+export const BarPlayerProgress = styled.div`
   width: 100%;
   height: 5px;
   background: #2e2e2e;
 `
 
-export const StyledBarPlayerBlock = styled.div`
+export const BarPlayerBlock = styled.div`
   height: 73px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,7 +37,7 @@ export const StyledBarPlayerBlock = styled.div`
   -ms-flex-pack: justify;
 `
 
-export const StyledTrackPlay = styled.div`
+export const TrackPlay = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,7 +46,7 @@ export const StyledTrackPlay = styled.div`
   -ms-flex-direction: row;
   flex-direction: row;
 `
-export const StyledTrackPlayContain = styled.div`
+export const TrackPlayContain = styled.div`
   width: auto;
   display: -ms-grid;
   display: grid;
@@ -57,7 +57,7 @@ export const StyledTrackPlayContain = styled.div`
   -ms-flex-align: center;
   align-items: center;
 `
-export const StyledTrackPlayImg = styled.div`
+export const TrackPlayImg = styled.div`
   width: 51px;
   height: 51px;
   background-color: #313131;
@@ -76,19 +76,19 @@ export const StyledTrackPlayImg = styled.div`
   -ms-grid-column: 1;
   grid-area: image;
 `
-export const StyledTrackPlaySvg = styled.svg`
+export const TrackPlaySvg = styled.svg`
   width: 18px;
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
 `
-export const StyledTracjPlayAuthor = styled.div`
+export const TracjPlayAuthor = styled.div`
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: author;
   min-width: 49px;
 `
-export const StyledTrackPlayAuthorLink = styled.a`
+export const TrackPlayAuthorLink = styled.a`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -96,13 +96,13 @@ export const StyledTrackPlayAuthorLink = styled.a`
   color: #ffffff;
   white-space: nowrap;
 `
-export const StyledTrackPlayAlbum = styled.div`
+export const TrackPlayAlbum = styled.div`
   -ms-grid-row: 2;
   -ms-grid-column: 2;
   grid-area: album;
   min-width: 49px;
 `
-export const StyledTrackPlayAlbumLink = styled.a`
+export const TrackPlayAlbumLink = styled.a`
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -110,7 +110,7 @@ export const StyledTrackPlayAlbumLink = styled.a`
   color: #ffffff;
 `
 
-export const StyledTrackPlayLlikeAndDis = styled.div`
+export const TrackPlayLlikeAndDis = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,28 +124,28 @@ export const StyledTrackPlayLlikeAndDis = styled.div`
   margin-left: 26%;
 `
 
-export const StyledTrackPlayLike = styled.div`
+export const TrackPlayLike = styled.div`
   padding: 5px;
 `
-export const StyledTrackPlayLlikeSvg = styled.svg`
+export const TrackPlayLlikeSvg = styled.svg`
   width: 14px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
 `
 
-export const StyledTrackPlayDislike = styled.div`
+export const TrackPlayDislike = styled.div`
   padding: 5px;
   margin-left: 28.5px;
 `
-export const StyledTrackPlayDislikeSvg = styled.div`
+export const TrackPlayDislikeSvg = styled.div`
   width: 14.34px;
   height: 13px;
   fill: transparent;
   stroke: #696969;
 `
 
-export const StyledBarPlayer = styled.div`
+export const BarPlayer = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -160,7 +160,7 @@ export const StyledBarPlayer = styled.div`
   -ms-flex-pack: start;
   justify-content: flex-start;
 `
-export const StyledPlayerControls = styled.div`
+export const PlayerControls = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,7 +171,7 @@ export const StyledPlayerControls = styled.div`
   padding: 0 27px 0 31px;
 `
 
-export const StyledBarVolumeBlock = styled.div`
+export const BarVolumeBlock = styled.div`
   width: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -183,7 +183,7 @@ export const StyledBarVolumeBlock = styled.div`
   margin-left: auto;
 `
 
-export const StyledVolumeContent = styled.div`
+export const VolumeContent = styled.div`
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -199,26 +199,90 @@ export const StyledVolumeContent = styled.div`
   justify-content: end;
 `
 
-export const StyledVolumeImg = styled.div`
+export const VolumeImg = styled.div`
   width: 13px;
   height: 18px;
   margin-right: 17px;
 `
 
-export const StyledVolumeSvg = styled.svg`
+export const VolumeSvg = styled.svg`
   width: 13px;
   height: 18px;
   fill: transparent;
 `
 
-export const StyledVolumeProgress = styled.div`
+export const VolumeProgress = styled.div`
   width: 109px;
 `
 
-export const StyledVolumeProgressLine = styled.input`
+export const VolumeProgressLine = styled.input`
   width: 109px;
 `
 
+const PlayerButtonsMixin = css`
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+`
 
-// const Styled = styled.div``
+export const PlayerBtnPrev = styled.div`
+  ${PlayerButtonsMixin}
+  margin-right: 23px;
+`
 
+export const PlayerBtnPrevSvg = styled.svg`
+  width: 15px;
+  height: 14px;
+`
+
+export const PlayerBtnPlay = styled.div`
+  ${PlayerButtonsMixin}
+  margin-right: 23px;
+`
+export const PlayerBtnPlaySvg = styled.svg`
+  width: 22px;
+  height: 20px;
+  fill: #d9d9d9;
+`
+export const PlayerBtnNext = styled.div`
+  ${PlayerButtonsMixin}
+  margin-right: 28px;
+  fill: #a53939;
+`
+export const PlayerBtnNextSvg = styled.svg`
+  width: 15px;
+  height: 14px;
+  fill: inherit;
+  stroke: #d9d9d9;
+`
+
+export const PlayerBtnRepeat = styled.div`
+  ${PlayerButtonsMixin}
+  margin-right: 24px;
+`
+export const PlayerBtnRepeatSvg = styled.svg`
+  width: 18px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+`
+
+export const PlayerBtnShuffle = styled.div`
+  ${PlayerButtonsMixin}
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+`
+export const PlayerBtnShuffleSvg = styled.svg`
+  width: 19px;
+  height: 12px;
+  fill: transparent;
+  stroke: #696969;
+`

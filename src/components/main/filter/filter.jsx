@@ -40,6 +40,10 @@ const StyledFilterWrapper = styled.div`
   margin-right: 10px;
 `
 
+const StyledFilterList = styled.ul``
+
+const StyledFilterItem = styled.li``
+
 // const StyledFilterButton = styled.div`
 //   font-style: normal;
 //   font-weight: 400;
@@ -48,18 +52,21 @@ const StyledFilterWrapper = styled.div`
 //   border: 1px solid #ffffff;
 //   border-radius: 60px;
 //   padding: 6px 20px;
+//   &:not(:last-child) {
+//     margin-right: 10px;
+//   }
 // `
 
 export function FilterType(props) {
   return (
     <StyledFilterBox id="style-1">
-      <ul className="filter__list">
+      <StyledFilterList>
         {props.list.map((item) => (
-          <li className="filter__item" key={item}>
+          <StyledFilterItem key={item}>
             {item}
-          </li>
+          </StyledFilterItem>
         ))}
-      </ul>
+      </StyledFilterList>
     </StyledFilterBox>
   )
 }
