@@ -1,7 +1,6 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import * as S from "./playerbar.styles"
-
+import * as S from './playerbar.styles'
 
 export default function ControlBar(props) {
   return (
@@ -44,19 +43,17 @@ export function TrackInfo({ loading }) {
           {loading ? (
             <Skeleton />
           ) : (
-            <S.TrackPlayAlbumLink href="http://">
-              Баста
-            </S.TrackPlayAlbumLink>
+            <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
           )}
         </S.TrackPlayAlbum>
       </S.TrackPlayContain>
       <S.TrackPlayLlikeAndDis>
-        <S.TrackPlayLike className=" _btn-icon">
+        <S.TrackPlayLike>
           <S.TrackPlayLlikeSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
           </S.TrackPlayLlikeSvg>
         </S.TrackPlayLike>
-        <S.TrackPlayDislike className="_btn-icon">
+        <S.TrackPlayDislike>
           <S.TrackPlayDislikeSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
           </S.TrackPlayDislikeSvg>
@@ -75,23 +72,23 @@ export function PlayerControls() {
             <use xlinkHref="img/icon/sprite.svg#icon-prev" />
           </S.PlayerBtnPrevSvg>
         </S.PlayerBtnPrev>
-        <S.PlayerBtnPlay className="btn">
+        <S.PlayerBtnPlay>
           <S.PlayerBtnPlaySvg alt="play">
             <use xlinkHref="img/icon/sprite.svg#icon-play" />
           </S.PlayerBtnPlaySvg>
-        </S.PlayerBtnPlay >
+        </S.PlayerBtnPlay>
         <S.PlayerBtnNext>
           <S.PlayerBtnNextSvg alt="next">
             <use xlinkHref="img/icon/sprite.svg#icon-next" />
           </S.PlayerBtnNextSvg>
         </S.PlayerBtnNext>
-        <S.PlayerBtnRepeat className="_btn-icon">
+        <S.PlayerBtnRepeat>
           <S.PlayerBtnRepeatSvg alt="repeat">
             <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
           </S.PlayerBtnRepeatSvg>
         </S.PlayerBtnRepeat>
-        <S.PlayerBtnShuffle className="_btn-icon">
-          <S.PlayerBtnShuffleSvg  alt="shuffle">
+        <S.PlayerBtnShuffle>
+          <S.PlayerBtnShuffleSvg alt="shuffle">
             <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
           </S.PlayerBtnShuffleSvg>
         </S.PlayerBtnShuffle>
@@ -110,12 +107,8 @@ function Volume() {
             <use xlinkHref="img/icon/sprite.svg#icon-volume" />
           </S.VolumeSvg>
         </S.VolumeImg>
-        <S.VolumeProgress className="_btn">
-          <S.VolumeProgressLine
-            className="_btn"
-            type="range"
-            name="range"
-          />
+        <S.VolumeProgress>
+          <S.VolumeProgressLine type="range" name="range" />
         </S.VolumeProgress>
       </S.VolumeContent>
     </S.BarVolumeBlock>

@@ -1,6 +1,6 @@
 import Footer from './components/main/footer/footer'
 import MainWindow from './components/main/main_window/MainWindow'
-import './style.css'
+
 
 function App() {
 

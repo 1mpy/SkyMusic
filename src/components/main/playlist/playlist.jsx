@@ -1,17 +1,6 @@
-import { styled } from 'styled-components'
-
 import PlaylistItem from './playlistitem'
 
-const SlyledContentPlaylist = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow-y: auto;
-`
+import ContentPlaylist from './playlist.styles'
 
 export default function Playlist(props) {
   const list = [
@@ -77,7 +66,7 @@ export default function Playlist(props) {
     { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
   ]
   return (
-    <SlyledContentPlaylist>
+    <ContentPlaylist>
       {list.map((item) => (
         <PlaylistItem
           title={item?.title}
@@ -88,6 +77,6 @@ export default function Playlist(props) {
           loading={props.loading}
         />
       ))}
-    </SlyledContentPlaylist>
+    </ContentPlaylist>
   )
 }

@@ -1,73 +1,17 @@
 import { useState } from 'react'
-import { styled } from 'styled-components'
+import * as S from './filter.styles'
 
-const StyledFilterBox = styled.div`
-  position: absolute;
-  width: 248px;
-  height: 305px;
-  border-radius: 12px;
-  padding: 34px;
-  background-color: rgb(49, 49, 49);
-  top: 50px;
-  overflow-y: scroll;
-  z-index: 10;
-`
 
-const StyledCenterblockFilter = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 51px;
-`
-
-const StyledFilterTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-`
-
-const StyledFilterWrapper = styled.div`
-  position: relative;
-  margin-right: 10px;
-`
-
-const StyledFilterList = styled.ul``
-
-const StyledFilterItem = styled.li``
-
-// const StyledFilterButton = styled.div`
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 16px;
-//   line-height: 24px;
-//   border: 1px solid #ffffff;
-//   border-radius: 60px;
-//   padding: 6px 20px;
-//   &:not(:last-child) {
-//     margin-right: 10px;
-//   }
-// `
 
 export function FilterType(props) {
   return (
-    <StyledFilterBox id="style-1">
-      <StyledFilterList>
+    <S.FilterBox id="style-1">
+      <S.FilterList>
         {props.list.map((item) => (
-          <StyledFilterItem key={item}>
-            {item}
-          </StyledFilterItem>
+          <S.FilterItem key={item}>{item}</S.FilterItem>
         ))}
-      </StyledFilterList>
-    </StyledFilterBox>
+      </S.FilterList>
+    </S.FilterBox>
   )
 }
 
@@ -114,56 +58,44 @@ export default function Filter() {
   }
 
   return (
-    <StyledCenterblockFilter>
-      <StyledFilterTitle>Искать по:</StyledFilterTitle>
-      <StyledFilterWrapper>
-        <div
-          className={
-            SelectedFilter === 'author'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+    <S.CenterblockFilter>
+      <S.FilterTitle>Искать по:</S.FilterTitle>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'author'}
           onClick={() => toggleSelected('author')}
           onKeyDown={() => toggleSelected('author')}
           role="button"
           tabIndex="0"
         >
           исполнителю
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'author' && <FilterType list={Authors} />}
-      </StyledFilterWrapper>
-      <StyledFilterWrapper>
-        <div
-          className={
-            SelectedFilter === 'bytime'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+      </S.FilterWrapper>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'bytime'}
           onClick={() => toggleSelected('bytime')}
           onKeyDown={() => toggleSelected('bytime')}
           role="button"
           tabIndex="0"
         >
           году выпуска
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'bytime' && <FilterType list={ByTime} />}
-      </StyledFilterWrapper>
-      <StyledFilterWrapper>
-        <div
-          className={
-            SelectedFilter === 'genre'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+      </S.FilterWrapper>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'genre'}
           onClick={() => toggleSelected('genre')}
           onKeyDown={() => toggleSelected('genre')}
           role="button"
           tabIndex="0"
         >
           жанру
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'genre' && <FilterType list={Genres} />}
-      </StyledFilterWrapper>
-    </StyledCenterblockFilter>
+      </S.FilterWrapper>
+    </S.CenterblockFilter>
   )
 }
