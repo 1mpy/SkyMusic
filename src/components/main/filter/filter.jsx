@@ -1,16 +1,17 @@
 import { useState } from 'react'
+import * as S from './filter.styles'
+
+
 
 export function FilterType(props) {
   return (
-    <div className="filter__box" id="style-1">
-      <ul className="filter__list">
+    <S.FilterBox id="style-1">
+      <S.FilterList>
         {props.list.map((item) => (
-          <li className="filter__item" key={item}>
-            {item}
-          </li>
+          <S.FilterItem key={item}>{item}</S.FilterItem>
         ))}
-      </ul>
-    </div>
+      </S.FilterList>
+    </S.FilterBox>
   )
 }
 
@@ -57,56 +58,44 @@ export default function Filter() {
   }
 
   return (
-    <div className="centerblock__filter filter">
-      <div className="filter__title">Искать по:</div>
-      <div className="filter__wrapper">
-        <div
-          className={
-            SelectedFilter === 'author'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+    <S.CenterblockFilter>
+      <S.FilterTitle>Искать по:</S.FilterTitle>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'author'}
           onClick={() => toggleSelected('author')}
           onKeyDown={() => toggleSelected('author')}
           role="button"
           tabIndex="0"
         >
           исполнителю
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'author' && <FilterType list={Authors} />}
-      </div>
-      <div className="filter__wrapper">
-        <div
-          className={
-            SelectedFilter === 'bytime'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+      </S.FilterWrapper>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'bytime'}
           onClick={() => toggleSelected('bytime')}
           onKeyDown={() => toggleSelected('bytime')}
           role="button"
           tabIndex="0"
         >
           году выпуска
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'bytime' && <FilterType list={ByTime} />}
-      </div>
-      <div className="filter__wrapper">
-        <div
-          className={
-            SelectedFilter === 'genre'
-              ? 'filter__button  _btn-text active'
-              : 'filter__button  _btn-text'
-          }
+      </S.FilterWrapper>
+      <S.FilterWrapper>
+        <S.FilterButton
+          active={SelectedFilter === 'genre'}
           onClick={() => toggleSelected('genre')}
           onKeyDown={() => toggleSelected('genre')}
           role="button"
           tabIndex="0"
         >
           жанру
-        </div>
+        </S.FilterButton>
         {SelectedFilter === 'genre' && <FilterType list={Genres} />}
-      </div>
-    </div>
+      </S.FilterWrapper>
+    </S.CenterblockFilter>
   )
 }

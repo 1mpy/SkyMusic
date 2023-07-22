@@ -1,5 +1,7 @@
 import PlaylistItem from './playlistitem'
 
+import ContentPlaylist from './playlist.styles'
+
 export default function Playlist(props) {
   const list = [
     { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
@@ -64,7 +66,7 @@ export default function Playlist(props) {
     { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
   ]
   return (
-    <div className="content__playlist playlist">
+    <ContentPlaylist>
       {list.map((item) => (
         <PlaylistItem
           title={item?.title}
@@ -75,6 +77,6 @@ export default function Playlist(props) {
           loading={props.loading}
         />
       ))}
-    </div>
+    </ContentPlaylist>
   )
 }

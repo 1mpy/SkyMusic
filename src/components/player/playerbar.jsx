@@ -1,121 +1,116 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import * as S from './playerbar.styles'
 
-export default function ControlBar({ loading }) {
+export default function ControlBar(props) {
   return (
-    <div className="bar">
-      <div className="bar__content">
-        <div className="bar__player-progress" />
-        <div className="bar__player-block">
+    <S.Bar>
+      <S.BarContent>
+        <S.BarPlayerProgress />
+        <S.BarPlayerBlock>
           <PlayerControls />
-          <TrackInfo loading={loading} />
+          <TrackInfo loading={props.loading} />
           <Volume />
-        </div>
-      </div>
-    </div>
+        </S.BarPlayerBlock>
+      </S.BarContent>
+    </S.Bar>
   )
 }
 
 export function TrackInfo({ loading }) {
   return (
-    <div className="player__track-play track-play">
-      <div className="track-play__contain">
-        <div className="track-play__image">
+    <S.TrackPlay>
+      <S.TrackPlayContain>
+        <S.TrackPlayImg>
           {loading ? (
             <Skeleton width="51px" height="51px" />
           ) : (
-            <svg className="track-play__svg" alt="music">
+            <S.TrackPlaySvg alt="music">
               <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </svg>
+            </S.TrackPlaySvg>
           )}
-        </div>
-        <div className="track-play__author">
+        </S.TrackPlayImg>
+        <S.TracjPlayAuthor>
           {loading ? (
             <Skeleton />
           ) : (
-            <a className="track-play__author-link" href="http://">
+            <S.TrackPlayAuthorLink href="http://">
               Ты та...
-            </a>
+            </S.TrackPlayAuthorLink>
           )}
-        </div>
-        <div className="track-play__album">
+        </S.TracjPlayAuthor>
+        <S.TrackPlayAlbum>
           {loading ? (
             <Skeleton />
           ) : (
-            <a className="track-play__album-link" href="http://">
-              Баста
-            </a>
+            <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
           )}
-        </div>
-      </div>
-      <div className="track-play__like-dis">
-        <div className="track-play__like _btn-icon">
-          <svg className="track-play__like-svg" alt="like">
+        </S.TrackPlayAlbum>
+      </S.TrackPlayContain>
+      <S.TrackPlayLlikeAndDis>
+        <S.TrackPlayLike>
+          <S.TrackPlayLlikeSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-like" />
-          </svg>
-        </div>
-        <div className="track-play__dislike _btn-icon">
-          <svg className="track-play__dislike-svg" alt="dislike">
+          </S.TrackPlayLlikeSvg>
+        </S.TrackPlayLike>
+        <S.TrackPlayDislike>
+          <S.TrackPlayDislikeSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
-          </svg>
-        </div>
-      </div>
-    </div>
+          </S.TrackPlayDislikeSvg>
+        </S.TrackPlayDislike>
+      </S.TrackPlayLlikeAndDis>
+    </S.TrackPlay>
   )
 }
 
 export function PlayerControls() {
   return (
-    <div className="bar__player player">
-      <div className="player__controls">
-        <div className="player__btn-prev">
-          <svg className="player__btn-prev-svg" alt="prev">
+    <S.BarPlayer>
+      <S.PlayerControls>
+        <S.PlayerBtnPrev>
+          <S.PlayerBtnPrevSvg alt="prev">
             <use xlinkHref="img/icon/sprite.svg#icon-prev" />
-          </svg>
-        </div>
-        <div className="player__btn-play _btn">
-          <svg className="player__btn-play-svg" alt="play">
+          </S.PlayerBtnPrevSvg>
+        </S.PlayerBtnPrev>
+        <S.PlayerBtnPlay>
+          <S.PlayerBtnPlaySvg alt="play">
             <use xlinkHref="img/icon/sprite.svg#icon-play" />
-          </svg>
-        </div>
-        <div className="player__btn-next">
-          <svg className="player__btn-next-svg" alt="next">
+          </S.PlayerBtnPlaySvg>
+        </S.PlayerBtnPlay>
+        <S.PlayerBtnNext>
+          <S.PlayerBtnNextSvg alt="next">
             <use xlinkHref="img/icon/sprite.svg#icon-next" />
-          </svg>
-        </div>
-        <div className="player__btn-repeat _btn-icon">
-          <svg className="player__btn-repeat-svg" alt="repeat">
+          </S.PlayerBtnNextSvg>
+        </S.PlayerBtnNext>
+        <S.PlayerBtnRepeat>
+          <S.PlayerBtnRepeatSvg alt="repeat">
             <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
-          </svg>
-        </div>
-        <div className="player__btn-shuffle _btn-icon">
-          <svg className="player__btn-shuffle-svg" alt="shuffle">
+          </S.PlayerBtnRepeatSvg>
+        </S.PlayerBtnRepeat>
+        <S.PlayerBtnShuffle>
+          <S.PlayerBtnShuffleSvg alt="shuffle">
             <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
-          </svg>
-        </div>
+          </S.PlayerBtnShuffleSvg>
+        </S.PlayerBtnShuffle>
         <trackInfo />
-      </div>
-    </div>
+      </S.PlayerControls>
+    </S.BarPlayer>
   )
 }
 
 function Volume() {
   return (
-    <div className="bar__volume-block volume">
-      <div className="volume__content">
-        <div className="volume__image">
-          <svg className="volume__svg" alt="volume">
+    <S.BarVolumeBlock>
+      <S.VolumeContent>
+        <S.VolumeImg>
+          <S.VolumeSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-volume" />
-          </svg>
-        </div>
-        <div className="volume__progress _btn">
-          <input
-            className="volume__progress-line _btn"
-            type="range"
-            name="range"
-          />
-        </div>
-      </div>
-    </div>
+          </S.VolumeSvg>
+        </S.VolumeImg>
+        <S.VolumeProgress>
+          <S.VolumeProgressLine type="range" name="range" />
+        </S.VolumeProgress>
+      </S.VolumeContent>
+    </S.BarVolumeBlock>
   )
 }
