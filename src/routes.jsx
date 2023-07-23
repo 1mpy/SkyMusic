@@ -11,7 +11,6 @@ function AppRoutes({ loading, token }) {
   console.log(token)
   return (
     <Routes>
-      <Route element={<ProtectedRoute isAllowed={Boolean(token)} />} />
       <Route
         path="/"
         element={
