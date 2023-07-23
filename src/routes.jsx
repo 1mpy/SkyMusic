@@ -11,33 +11,14 @@ function AppRoutes({ loading, token }) {
   console.log(token)
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute isAllowed={Boolean(token)}>
-            <Main loading={loading} />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/category/:id"
-        element={
-          <ProtectedRoute isAllowed={Boolean(token)}>
-            <Category />
-          </ProtectedRoute>
-        }
-      />
+      <Route element={<ProtectedRoute isAllowed={Boolean(token)} />}>
+        <Route path="/" element={<Main loading={loading} />} />
+        <Route path="/category/:id" element={<Category />} />
+        <Route path="/fav" element={<Fav />} />
+      </Route>
       <Route path="/login" element={<Login />} />
-      <Route path="/*" element={<NotFound />} />
-      <Route
-        path="/fav"
-        element={
-          <ProtectedRoute isAllowed={Boolean(token)}>
-            <Fav />
-          </ProtectedRoute>
-        }
-      />
       <Route path="/reg" element={<Registration />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   )
 }
