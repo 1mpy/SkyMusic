@@ -7,7 +7,7 @@ import * as S from '../../components/main/center_block/center.styles'
 
 
 function NotFound(props) {
-  console.log('first')
+  // console.log('first')
   return (
     <div>
       <GlobalStyle />

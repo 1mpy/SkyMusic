@@ -8,7 +8,7 @@ import ProtectedRoute from './components/protected-route/protected-route'
 import Main from './pages/main/Main'
 
 function AppRoutes({ loading, token }) {
-  console.log(token)
+  // console.log(token)
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(token)} />}>
@@ -18,7 +18,7 @@ function AppRoutes({ loading, token }) {
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/reg" element={<Registration />} />
-      <Route path="/*" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
