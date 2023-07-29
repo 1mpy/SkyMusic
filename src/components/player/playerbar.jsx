@@ -2,22 +2,22 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playerbar.styles'
 
-export default function ControlBar(props) {
+export default function ControlBar({selectedTrack}) {
   return (
     <S.Bar>
       <S.BarContent>
         <S.BarPlayerProgress />
         <S.BarPlayerBlock>
           <PlayerControls />
-          <TrackInfo loading={props.loading} />
+          <TrackInfo selectedTrack={selectedTrack} />
           <Volume />
         </S.BarPlayerBlock>
       </S.BarContent>
     </S.Bar>
   )
 }
-
-export function TrackInfo({ loading }) {
+// {name: "", author:"",album:"", duration_in_seconds:""
+export function TrackInfo({loading=false, selectedTrack }) {
   return (
     <S.TrackPlay>
       <S.TrackPlayContain>
@@ -35,7 +35,7 @@ export function TrackInfo({ loading }) {
             <Skeleton />
           ) : (
             <S.TrackPlayAuthorLink href="http://">
-              Ты та...
+              {selectedTrack.name }
             </S.TrackPlayAuthorLink>
           )}
         </S.TracjPlayAuthor>
@@ -43,7 +43,7 @@ export function TrackInfo({ loading }) {
           {loading ? (
             <Skeleton />
           ) : (
-            <S.TrackPlayAlbumLink href="http://">Баста</S.TrackPlayAlbumLink>
+            <S.TrackPlayAlbumLink href="http://">{selectedTrack.author }</S.TrackPlayAlbumLink>
           )}
         </S.TrackPlayAlbum>
       </S.TrackPlayContain>

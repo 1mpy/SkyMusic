@@ -3,9 +3,14 @@ import Search from '../search_bar/search'
 import Filter from '../filter/filter'
 import Playlist from '../playlist/playlist'
 
-import ControlBar from '../../player/playerbar'
+// import ControlBar from '../../player/playerbar'
 
-export default function CenterBlock(props) {
+export default function CenterBlock({
+  loading,
+  list,
+  tracklistError,
+  setSelectedTrack
+}) {
   return (
     <S.Centerblock>
       <Search />
@@ -22,8 +27,13 @@ export default function CenterBlock(props) {
             </S.PlaylistTitleSvg>
           </S.ContentPlaylist>
         </S.ContentTitle>
-        <Playlist loading={props.loading} />
-        <ControlBar loading={props.loading} />
+        <Playlist
+          list={list}
+          tracklistError={tracklistError}
+          loading={loading}
+          setSelectedTrack={setSelectedTrack}
+        />
+        {/* <ControlBar loading={loading} /> */}
       </S.CenterblockContent>
     </S.Centerblock>
   )
