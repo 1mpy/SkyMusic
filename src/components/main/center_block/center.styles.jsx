@@ -61,7 +61,7 @@ export const ContentPlaylist = styled.div`
   -ms-flex-direction: column;
   flex-direction: column;
   overflow-y: auto;
-  ${(props) => (props.$aligitems === 'end' ? 'align-items:end;' : '')}
+  ${(props) => (props.$alignitems === 'end' ? 'align-items:end;' : '')}
 `
 
 export const PlaylistTitleSvg = styled.svg`

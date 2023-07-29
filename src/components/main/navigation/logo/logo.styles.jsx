@@ -6,6 +6,7 @@ export const NavLogo = styled.div`
   padding: 13px 0 13px 0;
   background-color: transparent;
   margin-bottom: 20px;
+  content:url(img/logo.png);
 `
 
 export const LogoImage = styled.img`
