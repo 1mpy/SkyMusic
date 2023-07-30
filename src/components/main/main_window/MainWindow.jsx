@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Main from './MainWindow.styles'
@@ -10,23 +9,34 @@ import GlobalStyle from '../../../globalstyles'
 import Footer from '../footer/footer'
 import ControlBar from '../../player/playerbar'
 
-export default function MainWindow(props) {
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 5000)
-  }, [])
+export default function MainWindow({
+  loading,
+  list,
+  tracklistError,
+  selectedTrack,
+  setSelectedTrack,
+}) {
+  // const [loading, setLoading] = useState(true)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false)
+  //   }, 5000)
+  // }, [])
   return (
     <Main>
       <GlobalStyle />
       <Nav />
       <SkeletonTheme baseColor="#313131" highlightColor="#444">
         {/* <Search/> */}
-        <CenterBlock loading={loading} />
+        <CenterBlock
+          list={list}
+          tracklistError={tracklistError}
+          loading={loading}
+          setSelectedTrack={setSelectedTrack}
+        />
         <SideBar loading={loading} />
         <Footer />
-        <ControlBar loading={props.loading} />
+        {selectedTrack && <ControlBar selectedTrack={selectedTrack} />}
       </SkeletonTheme>
     </Main>
   )

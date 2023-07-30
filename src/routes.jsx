@@ -7,12 +7,30 @@ import Category from './pages/category/category'
 import ProtectedRoute from './components/protected-route/protected-route'
 import Main from './pages/main/Main'
 
-function AppRoutes({ loading, token }) {
+function AppRoutes({
+  loading,
+  token,
+  list,
+  tracklistError,
+  selectedTrack,
+  setSelectedTrack
+}) {
   // console.log(token)
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(token)} />}>
-        <Route path="/" element={<Main loading={loading} />} />
+        <Route
+          path="/"
+          element={
+            <Main
+              loading={loading}
+              list={list}
+              tracklistError={tracklistError}
+              selectedTrack= {selectedTrack}
+              setSelectedTrack={setSelectedTrack}
+            />
+          }
+        />
         <Route path="/category/:id" element={<Category />} />
         <Route path="/fav" element={<Fav />} />
       </Route>

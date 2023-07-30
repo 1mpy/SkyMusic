@@ -20,7 +20,7 @@ export default function PlaylistItem(props) {
             {props.loading ? (
               <Skeleton />
             ) : (
-              <S.TrackTitleLink href="http://">
+              <S.TrackTitleLink onClick={props.onClick}>
                 {props.title} <S.TrackTitleSpan />
               </S.TrackTitleLink>
             )}

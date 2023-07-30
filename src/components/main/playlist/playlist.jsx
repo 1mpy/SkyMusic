@@ -1,80 +1,38 @@
 import PlaylistItem from './playlistitem'
-
 import ContentPlaylist from './playlist.styles'
 
-export default function Playlist(props) {
-  const list = [
-    { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
-    {
-      title: 'Elektro',
-      author: 'Dynoro, Outwork, Mr. Gee',
-      album: 'Elektro',
-      time: '2:22',
-    },
-    {
-      title: 'I’m Fire',
-      author: 'Ali Bakgor',
-      album: 'I’m Fire',
-      time: '2:22',
-    },
-    {
-      title: 'Non Stop',
-      subtitle: '(Remix)',
-      author: 'Стоункат, Psychopath',
-      album: 'Non Stop',
-      time: '4:12',
-    },
-    {
-      title: 'Run Run',
-      subtitle: '(feat. AR/CO)',
-      author: 'Jaded, Will Clarke, AR/CO',
-      album: 'Run Run',
-      time: '2:54',
-    },
-    {
-      title: 'Eyes on Fire',
-      subtitle: '(Zeds Dead Remix)',
-      author: 'Blue Foundation, Zeds Dead',
-      album: 'Eyes on Fire',
-      time: '5:20',
-    },
-    {
-      title: 'Mucho Bien',
-      subtitle: '(Hi Profile Remix)',
-      author: 'HYBIT, Mr. Black, Offer Nissim, Hi Profile',
-      album: 'Mucho Bien',
-      time: '3:41',
-    },
-    {
-      title: 'Knives n Cherries',
-      author: 'minthaze',
-      album: 'Captivating',
-      time: '1:48',
-    },
-    {
-      title: 'How Deep Is Your Love',
-      author: 'Calvin Harris, Disciples',
-      album: 'How Deep Is Your Love',
-      time: '3:32',
-    },
-    {
-      title: 'Morena',
-      author: 'Tom Boxer',
-      album: 'Soundz Made in Romania',
-      time: '3:36',
-    },
-    { title: 'Guilt', author: 'Nero', album: 'Welcome Reality', time: '4:44' },
-  ]
+export default function Playlist({ loading, list,  tracklistError, setSelectedTrack  }) {
+  // const [list, setList] = useState([])
+  // const [tracklistError, settacklistError] = useState(null)
+
+  // useEffect(() => {
+  //   getTracks()
+  //     .then((tracklist) => {
+  //       console.log(tracklist)
+  //       setList(tracklist) // имя для удобства
+  //     })
+  //     .catch(() => {
+  //       settracklistError('Не удалось загрузить плейлист, попробуйте позже')
+  //     })
+  // }, [])
+const tempTracks = Array(10).fill({name: "", author:"",album:"", duration_in_seconds:""
+})
+const tracks = loading?tempTracks : list;
+// [{name: "", author:"",album:"", duration_in_seconds:""
+// }]
+
+
   return (
     <ContentPlaylist>
-      {list.map((item) => (
+      <p>{tracklistError}</p>
+      {tracks?.map((item) => (
         <PlaylistItem
-          title={item?.title}
-          subtitle={item?.subtitle}
+          title={item?.name}
           author={item?.author}
           album={item?.album}
-          time={item?.time}
-          loading={props.loading}
+          time={item?.duration_in_seconds}
+          loading={loading}
+          onClick={() => setSelectedTrack(item)}
         />
       ))}
     </ContentPlaylist>
