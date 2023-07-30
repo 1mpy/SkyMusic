@@ -36,7 +36,13 @@ export default function MainWindow({
         />
         <SideBar loading={loading} />
         <Footer />
-        {selectedTrack && <ControlBar selectedTrack={selectedTrack} />}
+        {selectedTrack && (
+          <ControlBar
+            list={list}
+            selectedTrack={selectedTrack}
+            setSelectedTrack={setSelectedTrack}
+          />
+        )}
       </SkeletonTheme>
     </Main>
   )
