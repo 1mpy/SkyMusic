@@ -2,8 +2,6 @@ import { styled, css } from 'styled-components'
 
 const PlayerButtonsMixin = css`
   padding: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -11,12 +9,17 @@ const PlayerButtonsMixin = css`
 `
 const PlayerButtonsActivatedMixin = css`
   &:hover svg {
-    fill: transparent;
+    fill: #696969;
     stroke: #acacac;
     cursor: pointer;
   }
-  :active {
-    fill: #696969;
+  :active svg {
+    fill: #d9d9d9;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+  &.active svg {
+    fill: #ffffff;
     stroke: #ffffff;
     cursor: pointer;
   }
@@ -42,9 +45,8 @@ export const BarContent = styled.div`
 `
 
 export const BarPlayerProgress = styled.div`
-  width: 100%;
   height: 5px;
-  background: #2e2e2e;
+  background: #b672ff;
 `
 
 export const BarPlayerBlock = styled.div`
@@ -255,16 +257,19 @@ export const VolumeProgressLine = styled.input`
 
 export const PlayerBtnPrev = styled.div`
   ${PlayerButtonsMixin}
+  ${PlayerButtonsActivatedMixin}
   margin-right: 23px;
 `
 
 export const PlayerBtnPrevSvg = styled.svg`
   width: 15px;
   height: 14px;
+  fill: #d9d9d9;
 `
 
 export const PlayerBtnPlay = styled.div`
   ${PlayerButtonsMixin}
+  ${PlayerButtonsActivatedMixin}
   margin-right: 23px;
 `
 
@@ -274,10 +279,17 @@ export const PlayerBtnPlaySvg = styled.svg`
   fill: #d9d9d9;
 `
 
+export const PlayerBtnPauseSvg = styled.svg`
+  width: 22px;
+  height: 20px;
+  fill: #d9d9d9;
+`
+
 export const PlayerBtnNext = styled.div`
   ${PlayerButtonsMixin}
+  ${PlayerButtonsActivatedMixin}
   margin-right: 28px;
-  fill: #a53939;
+  fill: #d9d9d9;
 `
 
 export const PlayerBtnNextSvg = styled.svg`
@@ -303,8 +315,8 @@ export const PlayerBtnRepeatSvg = styled.svg`
 export const PlayerBtnShuffle = styled.div`
   ${PlayerButtonsMixin}
   ${PlayerButtonsActivatedMixin}
-  display: -webkit-box;
-  display: -ms-flexbox;
+  /* display: -webkit-box;
+  display: -ms-flexbox; */
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -316,4 +328,9 @@ export const PlayerBtnShuffleSvg = styled.svg`
   height: 12px;
   fill: transparent;
   stroke: #696969;
+`
+
+export const PlayerTime = styled.div`
+  margin-left: auto;
+  width: fit-content;
 `
