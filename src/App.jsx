@@ -1,8 +1,12 @@
-// import MainWindow from './components/main/main_window/MainWindow'
 import { useEffect, useState } from 'react'
 import AppRoutes from './routes'
 import GlobalStyle from './globalstyles'
 import getTracks from './Api'
+import {
+  ThemeContext,
+  themes,
+} from './components/contexts/theme-switcher/theme'
+import ThemeSwitcher from './components/utils/themeSwitcher'
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -10,6 +14,8 @@ function App() {
   const [list, setList] = useState([])
   const [tracklistError, settracklistError] = useState(null)
   const [selectedTrack, setSelectedTrack] = useState(false)
+
+  const [currentTheme, setCurrentTheme] = useState(themes.light)
   useEffect(() => {
     setLoading(true)
     getTracks()
@@ -23,18 +29,31 @@ function App() {
       .finally(() => setLoading(false))
   }, [])
 
+  // Color Theme
+
+  const toggleTheme = () => {
+    if (currentTheme === themes.dark) {
+      setCurrentTheme(themes.light)
+      return
+    }
+
+    setCurrentTheme(themes.dark)
+  }
+
   return (
     <div className="App container">
       <GlobalStyle />
-      <AppRoutes
-        loading={loading}
-        token={token}
-        list={list}
-        tracklistError={tracklistError}
-        selectedTrack= {selectedTrack}
-        setSelectedTrack={setSelectedTrack}
-      />
-      {/* <MainWindow /> */}
+      <ThemeContext.Provider value={{ theme: currentTheme, toggleTheme }}>
+        <ThemeSwitcher />
+        <AppRoutes
+          loading={loading}
+          token={token}
+          list={list}
+          tracklistError={tracklistError}
+          selectedTrack={selectedTrack}
+          setSelectedTrack={setSelectedTrack}
+        />
+      </ThemeContext.Provider>
     </div>
   )
 }

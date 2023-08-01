@@ -1,4 +1,6 @@
 import * as S from './NavMenu.styles'
+import ThemeSwitcher from '../../../utils/themeSwitcher'
+
 
 function MenuItem(props) {
   return (
@@ -12,6 +14,8 @@ function MenuItem(props) {
 }
 
 export default function Menu() {
+
+
   const links = [
     { name: 'Главное', path: '/' },
     { name: 'Мои треки', path: '/fav' },
@@ -24,6 +28,7 @@ export default function Menu() {
           <MenuItem name={link.name} path={link.path} />
         ))}
       </S.MenuList>
+      <ThemeSwitcher/>
     </S.NavMenu>
   )
 }
