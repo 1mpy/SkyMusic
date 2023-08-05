@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import * as S from "./burger.styles"
+import * as S from './burger.styles'
 import Menu from '../navMenu/NavMenu'
-
+import { useThemeContext } from '../../../contexts/theme-switcher/theme'
 
 export default function BurgerToMenu() {
+  const { theme } = useThemeContext()
   const [visible, setVisible] = useState(true)
   const toggleVisibility = () => {
     setVisible(!visible)
@@ -11,6 +12,7 @@ export default function BurgerToMenu() {
   return (
     <>
       <S.NavBurger
+        style={theme}
         onClick={toggleVisibility}
         onKeyDown={toggleVisibility}
         role="button"

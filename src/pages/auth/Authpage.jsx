@@ -1,37 +1,78 @@
 /* eslint-disable no-shadow */
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import * as S from "./Authpage.styles";
-
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import * as S from './Authpage.styles'
+import { loginUser, registerUser } from '../../api/api'
+import { useSetUser } from '../../components/contexts/user/user'
 
 export default function AuthPage({ isLoginMode = false }) {
-  const [error, setError] = useState(null);
+  const navigate = useNavigate()
+  const setUser = useSetUser()
+  const [error, setError] = useState(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
+  const [disabledButton, setDisabledButton] = useState(false)
+  const validate = () => {
+    if (!password || !email) {
+      throw new Error('Укажите почту/пароль')
+    }
+    if (password !== repeatPassword && !isLoginMode) {
+      throw new Error('Пароли не совпадают')
+    }
+  }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-
-  const handleLogin = async ({email, password}) => {
-    alert(`Выполняется вход: ${email} ${password}`);
-    setError("Неизвестная ошибка входа");
-  };
+  const handleLogin = async () => {
+    try {
+      validate()
+      setDisabledButton(true)
+      const user = await loginUser(email, password)
+      setDisabledButton(false)
+      setUser(user)
+      localStorage.setItem('token', 'token')
+      localStorage.setItem('user', JSON.stringify(user))
+      navigate('/')
+      // console.log(user)
+    } catch (error) {
+      setError(error.message)
+      setDisabledButton(false)
+      // console.log(error)
+    }
+  }
 
   const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`);
-    setError("Неизвестная ошибка регистрации");
-  };
+    try {
+      validate()
+      setDisabledButton(true)
+      const user = await registerUser(email, password, email)
+      setDisabledButton(false)
+      setUser(user)
+      localStorage.setItem('token', 'token')
+      localStorage.setItem('user', JSON.stringify(user))
+      // console.log(user)
+      navigate('/')
+    } catch (error) {
+      setError(error.message)
+      setDisabledButton(false)
+      // console.log(error)
+    }
+  }
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
   useEffect(() => {
-    setError(null);
-  }, [isLoginMode, email, password, repeatPassword]);
-
+    setError(null)
+  }, [isLoginMode, email, password, repeatPassword])
+  // console.log(error)
   return (
     <S.PageContainer>
       <S.ModalForm>
         <Link to="/login">
           <S.ModalLogo>
-            <S.ModalLogoImage style={{background: 'red'}} src="/img/logo.png" alt="logo" />
+            <S.ModalLogoImage
+              style={{ background: 'red' }}
+              src="/img/logo.png"
+              alt="logo"
+            />
           </S.ModalLogo>
         </Link>
         {isLoginMode ? (
@@ -43,7 +84,7 @@ export default function AuthPage({ isLoginMode = false }) {
                 placeholder="Почта"
                 value={email}
                 onChange={(event) => {
-                  setEmail(event.target.value);
+                  setEmail(event.target.value)
                 }}
               />
               <S.ModalInput
@@ -52,13 +93,13 @@ export default function AuthPage({ isLoginMode = false }) {
                 placeholder="Пароль"
                 value={password}
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  setPassword(event.target.value)
                 }}
               />
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={() => handleLogin({ email, password })}>
+              <S.PrimaryButton onClick={handleLogin} disabled={disabledButton}>
                 Войти
               </S.PrimaryButton>
               <Link to="/register">
@@ -75,7 +116,7 @@ export default function AuthPage({ isLoginMode = false }) {
                 placeholder="Почта"
                 value={email}
                 onChange={(event) => {
-                  setEmail(event.target.value);
+                  setEmail(event.target.value)
                 }}
               />
               <S.ModalInput
@@ -84,7 +125,7 @@ export default function AuthPage({ isLoginMode = false }) {
                 placeholder="Пароль"
                 value={password}
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  setPassword(event.target.value)
                 }}
               />
               <S.ModalInput
@@ -93,13 +134,16 @@ export default function AuthPage({ isLoginMode = false }) {
                 placeholder="Повторите пароль"
                 value={repeatPassword}
                 onChange={(event) => {
-                  setRepeatPassword(event.target.value);
+                  setRepeatPassword(event.target.value)
                 }}
               />
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={handleRegister}>
+              <S.PrimaryButton
+                onClick={handleRegister}
+                disabled={disabledButton}
+              >
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
@@ -107,5 +151,5 @@ export default function AuthPage({ isLoginMode = false }) {
         )}
       </S.ModalForm>
     </S.PageContainer>
-  );
+  )
 }

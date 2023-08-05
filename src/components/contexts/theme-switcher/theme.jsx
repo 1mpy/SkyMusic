@@ -1,26 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 
 export const themes = {
   light: {
+    key: 'light',
     color: '#282c34',
-    background: "#fff",
+    background: '#fff',
   },
   dark: {
+    key: 'dark',
     color: '#fff',
-    background: "#282c34",
+    background: '#181818',
   },
-};
+}
 
 export const ThemeContext = React.createContext({
   theme: themes.dark,
   toggleTheme: () => {},
-});
+})
 
-
+// кастомный хук
 export const useThemeContext = () => {
-  const theme = useContext(ThemeContext);
+  const theme = useContext(ThemeContext)
 
-  if(!theme) return theme.dark;
+  if (!theme) return theme.dark
 
-  return theme;
+  return theme
 }
