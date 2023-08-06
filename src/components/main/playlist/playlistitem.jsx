@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playlistitem.styles'
@@ -5,7 +6,8 @@ import { useThemeContext } from '../../contexts/theme-switcher/theme'
 
 export default function PlaylistItem(props) {
   const { theme } = useThemeContext()
-
+  const dispatch = useDispatch()
+  const currentTrack = useSelector(state => state.track)
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
