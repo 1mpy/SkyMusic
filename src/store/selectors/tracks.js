@@ -4,6 +4,6 @@ export const trackSelector = (store) => store.player.track
 
 export const isTrackPlayingSelector = (store) => store.player.playing
 
-export const shufflePlaylistSelector = (store) => store.player.shufflePlaylist
+export const shufflePlaylistSelector = (store) => store.player.shuffledPlaylist
 
-export const repeatTrackSelector = (store) => store.player.repeatTrack
+export const repeatTrackSelector = (store) => store.player.repeat

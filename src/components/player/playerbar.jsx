@@ -131,6 +131,7 @@ export default function ControlBar() {
         ref={audioElem}
         loop={isLoop}
         onTimeUpdate={trackPlaying}
+        onEnded={playNextTrack}
       >
         <source src={selectedTrack.track_file} type="audio/mpeg" />
         <track kind="captions" label="" />
@@ -259,7 +260,7 @@ export function PlayerControls({
         </S.PlayerBtnNext>
         <S.PlayerBtnRepeat
           className={isLoop ? 'active' : ''}
-          onClick={() => (isLoop ? setIsLoop(false) : setIsLoop(true))}
+          onClick={setIsLoop}
         >
           <S.PlayerBtnRepeatSvg alt="repeat">
             <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
@@ -267,7 +268,7 @@ export function PlayerControls({
         </S.PlayerBtnRepeat>
         <S.PlayerBtnShuffle
           className={isShuffle ? 'active' : ''}
-          onClick={() => (isShuffle ? setIsShuffle(false) : setIsShuffle(true))}
+          onClick={setIsShuffle}
         >
           <S.PlayerBtnShuffleSvg alt="shuffle">
             <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
