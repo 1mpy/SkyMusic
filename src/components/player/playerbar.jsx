@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playerbar.styles'
+import formatTime from '../utils/formatTime'
 
 export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -74,17 +75,6 @@ export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
     const offset = e.nativeEvent.offsetX
     const divprogress = (offset / width) * 100
     audioElem.current.currentTime = (divprogress / 100) * selectedTrack.length
-  }
-
-  // fulltracktime
-  function formatTime(time) {
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.floor(time - minutes * 60)
-
-    if (minutes < 10) minutes = `0${minutes}`
-    if (seconds < 10) seconds = `0${seconds}`
-
-    return `${minutes}:${seconds}`
   }
 
   // VOLUME BAR

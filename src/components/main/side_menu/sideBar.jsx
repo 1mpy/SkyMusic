@@ -4,10 +4,11 @@ import * as S from './sideBar.styles'
 import playlist01 from './img/playlist01.png'
 import playlist02 from './img/playlist02.png'
 import playlist03 from './img/playlist03.png'
+import { useSetUser, useUser } from '../../contexts/user/user'
 
 export function SidebarItem(props) {
-  const url =`./img/playlist0${props.id}.png` 
-  return (    
+  const url = `./img/playlist0${props.id}.png`
+  return (
     <S.SidebarItem>
       {props.loading ? (
         <Skeleton width="250px" height="150px" />
@@ -21,25 +22,34 @@ export function SidebarItem(props) {
 }
 
 export default function SideBar() {
-  const user = { name: 'Sergey Ivanov' }
   const compilations = [
     { id: '1', path: 'category', imgUrl: playlist01 },
     { id: '2', path: 'category', imgUrl: playlist02 },
     { id: '3', path: 'category', imgUrl: playlist03 },
   ]
   // { id: '1', path: 'category', imgUrl: './img/playlist01.png' },
+  const user = useUser()
+
+  const setUser = useSetUser()
+
+  const logOutHandle = () => {
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    setUser(null)
+  }
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
-        <S.SidebarPersonalName>{user?.name}</S.SidebarPersonalName>
-        <S.SidebarAvatar src="img/logout.svg">
-          <svg xlinkHref="img/logout.svg" />
+        <S.SidebarPersonalName>{user?.username}</S.SidebarPersonalName>
+        <S.SidebarAvatar onClick={logOutHandle}>
+          <use xlinkHref="img/icon/sprite.svg#icon-logout" />
         </S.SidebarAvatar>
       </S.SidebarPersonal>
       <S.SidebarBlock>
         <S.SidebarList>
           {compilations.map((compilation) => (
             <SidebarItem
+              key={compilation.id}
               id={compilation.id}
               path={compilation.path}
               imageUrl={compilation.imgUrl}

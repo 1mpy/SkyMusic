@@ -1,8 +1,11 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playlistitem.styles'
+import { useThemeContext } from '../../contexts/theme-switcher/theme'
 
 export default function PlaylistItem(props) {
+  const { theme } = useThemeContext()
+
   return (
     <S.PlaylistItem>
       <S.PlaylistTrack>
@@ -20,7 +23,10 @@ export default function PlaylistItem(props) {
             {props.loading ? (
               <Skeleton />
             ) : (
-              <S.TrackTitleLink onClick={props.onClick}>
+              <S.TrackTitleLink
+                style={{ color: theme?.color }}
+                onClick={props.onClick}
+              >
                 {props.title} <S.TrackTitleSpan />
               </S.TrackTitleLink>
             )}
@@ -30,7 +36,9 @@ export default function PlaylistItem(props) {
           {props.loading ? (
             <Skeleton />
           ) : (
-            <S.TrackAuthorLink href="http://">{props.author}</S.TrackAuthorLink>
+            <S.TrackAuthorLink style={{ color: theme?.color }} href="http://">
+              {props.author}
+            </S.TrackAuthorLink>
           )}
         </S.TrackAuthor>
         <S.TrackAuthorAlbum>

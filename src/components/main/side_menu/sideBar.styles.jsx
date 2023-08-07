@@ -32,11 +32,12 @@ export const SidebarPersonalName = styled.p`
   margin-right: 16px;
 `
 
-export const SidebarAvatar = styled.div`
+export const SidebarAvatar = styled.svg`
   width: 43px;
   height: 43px;
   background-color: #313131;
   border-radius: 50%;
+  padding: 1px;
 `
 
 export const SidebarBlock = styled.div`
