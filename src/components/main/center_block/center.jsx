@@ -7,7 +7,6 @@ import Playlist from '../playlist/playlist'
 
 export default function CenterBlock({
   loading,
-  list,
   tracklistError,
   setSelectedTrack
 }) {
@@ -28,7 +27,6 @@ export default function CenterBlock({
           </S.ContentPlaylist>
         </S.ContentTitle>
         <Playlist
-          list={list}
           tracklistError={tracklistError}
           loading={loading}
           setSelectedTrack={setSelectedTrack}

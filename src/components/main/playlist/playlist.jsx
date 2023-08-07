@@ -1,25 +1,15 @@
 import PlaylistItem from './playlistitem'
 import ContentPlaylist from './playlist.styles'
+import { useSelector } from 'react-redux'
+import { playlistSelector } from '../../../store/selectors/tracks'
 
 export default function Playlist({
   loading,
-  list,
   tracklistError,
   setSelectedTrack,
 }) {
-  // const [list, setList] = useState([])
-  // const [tracklistError, settacklistError] = useState(null)
+  const list = useSelector(playlistSelector)
 
-  // useEffect(() => {
-  //   getTracks()
-  //     .then((tracklist) => {
-  //       console.log(tracklist)
-  //       setList(tracklist) // имя для удобства
-  //     })
-  //     .catch(() => {
-  //       settracklistError('Не удалось загрузить плейлист, попробуйте позже')
-  //     })
-  // }, [])
   const tempTracks = Array(10).fill({
     name: '',
     author: '',
@@ -27,8 +17,6 @@ export default function Playlist({
     duration_in_seconds: '',
   })
   const tracks = loading ? tempTracks : list
-  // [{name: "", author:"",album:"", duration_in_seconds:""
-  // }]
 
   return (
     <ContentPlaylist>
@@ -36,10 +24,11 @@ export default function Playlist({
       {tracks?.map((item) => (
         <PlaylistItem
           key={item?.id}
-          title={item?.name}
-          author={item?.author}
-          album={item?.album}
-          time={item?.duration_in_seconds}
+          item={item}
+          // title={item?.name}
+          // author={item?.author}
+          // album={item?.album}
+          // time={item?.duration_in_seconds}
           loading={loading}
           onClick={() => setSelectedTrack(item)}
         />

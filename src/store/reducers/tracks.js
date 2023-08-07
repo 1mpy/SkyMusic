@@ -1,60 +1,68 @@
 import {
   CURRENT_TRACK,
+  PLAY_TRACK,
   PAUSE_TRACK,
   NEXT_TRACK,
   PREVIOUS_TRACK,
   CURRENT_PLAYLIST,
   SHUFFLE_PLAYLIST,
+  REPEAT_TRACK,
 } from '../actions/types/tracks.js'
 
 // Начальное состояние
 const initialState = {
   playing: false,
   track: null,
-  playlist: {},
-  shuffledPlaylist: {},
+  playlist: [],
+  shuffledPlaylist: false,
+  repeat: false,
 }
 
 // Reducer
 function trackReducer(state = initialState, action) {
   switch (action.type) {
     case CURRENT_TRACK: {
-      const id = action.payload
-      // как-то по id найти трек и передать в return?
       return {
         ...state,
         playing: true,
-        track: {},
+        track: action.payload,
+      }
+    }
+
+    case PLAY_TRACK: {
+      return {
+        ...state,
+        playing: true,
       }
     }
 
     case PAUSE_TRACK: {
-      const id = action.payload
-      // как-то по id найти трек
       return {
         ...state,
         playing: false,
-        track: {},
       }
     }
 
     case NEXT_TRACK: {
-      const id = action.payload
-      // как-то по id найти трек
       return {
         ...state,
         playing: true,
-        track: {},
+        track: action.payload,
       }
     }
 
     case PREVIOUS_TRACK: {
-      const id = action.payload
-      // как-то по id найти трек
       return {
         ...state,
         playing: true,
-        track: {},
+        track: action.payload,
+      }
+    }
+
+    case REPEAT_TRACK: {
+      return {
+        ...state,
+        repeat: !state.repeat, // переключатель
       }
     }
 
@@ -68,7 +76,7 @@ function trackReducer(state = initialState, action) {
     case SHUFFLE_PLAYLIST: {
       return {
         ...state,
-        shuffledPlaylist: action.payload,
+        shuffledPlaylist: !state.shuffledPlaylist, // переключатель
       }
     }
 

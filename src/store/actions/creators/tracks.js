@@ -1,43 +1,46 @@
 import {
   CURRENT_TRACK,
+  PLAY_TRACK,
   PAUSE_TRACK,
   NEXT_TRACK,
   PREVIOUS_TRACK,
   CURRENT_PLAYLIST,
   SHUFFLE_PLAYLIST,
+  REPEAT_TRACK,
 } from '../types/tracks.js'
 
-export const currentTrack = (id) => ({
+export const setCurrentTrack = (item) => ({
   type: CURRENT_TRACK,
-  payload: id,
+  payload: item,
 })
 
-export const pauseTrack = (isPlaying) => ({
+export const playTrack = () => ({
+  type: PLAY_TRACK,
+})
+
+export const pauseTrack = () => ({
   type: PAUSE_TRACK,
-  payload: isPlaying,
 })
 
-export const nextTrack = (id) => ({
+export const nextTrack = (item) => ({
   type: NEXT_TRACK,
-  payload: id,
+  payload: item,
 })
 
-export const previousTrack = (id) => ({
+export const previousTrack = (item) => ({
   type: PREVIOUS_TRACK,
-  payload: id,
+  payload: item,
 })
 
-export const currentPlaylist = (playlist) => ({
+export const setCurrentPlaylist = (playlist) => ({
   type: CURRENT_PLAYLIST,
   payload: playlist,
 })
 
-export const shufflePlaylist = (playlist) => ({
+export const shufflePlaylist = () => ({
   type: SHUFFLE_PLAYLIST,
-  payload: playlist,
 })
 
-// export const repeatTrack = () => ({
-//   type: REPEAT_TRACK,
-//   payload: {},
-// })
+export const repeatTrack = () => ({
+  type: REPEAT_TRACK,
+})
