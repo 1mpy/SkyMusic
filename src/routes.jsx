@@ -10,7 +10,6 @@ import UserContext from './components/contexts/user/user'
 
 function AppRoutes({
   loading,
-  list,
   tracklistError,
   selectedTrack,
   setSelectedTrack,
@@ -33,7 +32,6 @@ function AppRoutes({
             element={
               <Main
                 loading={loading}
-                list={list}
                 tracklistError={tracklistError}
                 selectedTrack={selectedTrack}
                 setSelectedTrack={setSelectedTrack}

@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import AppRoutes from './routes'
 import GlobalStyle from './globalstyles'
 import getTracks from '../src/api/api'
@@ -6,11 +7,12 @@ import {
   ThemeContext,
   themes,
 } from './components/contexts/theme-switcher/theme'
+import { setCurrentPlaylist } from './store/actions/creators/tracks'
 
 function App() {
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   // const token = localStorage.getItem('token')
-  const [list, setList] = useState([])
   const [tracklistError, settracklistError] = useState(null)
   const [selectedTrack, setSelectedTrack] = useState(false)
   const [currentTheme, setCurrentTheme] = useState(themes.dark)
@@ -20,7 +22,7 @@ function App() {
     getTracks()
       .then((tracklist) => {
         // console.log(tracklist)
-        setList(tracklist) // имя для удобства
+        dispatch(setCurrentPlaylist(tracklist)) // имя для удобства
       })
       .catch(() => {
         settracklistError('Не удалось загрузить плейлист, попробуйте позже')
@@ -58,7 +60,6 @@ function App() {
         <AppRoutes
           loading={loading}
           // token={token}
-          list={list}
           tracklistError={tracklistError}
           selectedTrack={selectedTrack}
           setSelectedTrack={setSelectedTrack}

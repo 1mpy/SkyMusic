@@ -3,29 +3,63 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playerbar.styles'
 import formatTime from '../utils/formatTime'
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  playlistSelector,
+  trackSelector,
+  isTrackPlayingSelector,
+  repeatTrackSelector,
+  shufflePlaylistSelector,
+} from '../../store/selectors/tracks'
+import {
+  setCurrentTrack,
+  playTrack,
+  pauseTrack,
+  nextTrack,
+  previousTrack,
+  repeatTrack,
+  shufflePlaylist,
+} from '../../store/actions/creators/tracks'
 
-export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
-  const [isPlaying, setIsPlaying] = useState(false)
+export default function ControlBar() {
+  const dispatch = useDispatch()
+  const list = useSelector(playlistSelector)
+  const selectedTrack = useSelector(trackSelector)
+  const isPlaying = useSelector(isTrackPlayingSelector)
   const audioElem = useRef(null)
-  const [isLoop, setIsLoop] = useState(false)
+  const isLoop = useSelector(repeatTrackSelector)
+  // const [isLoop, setIsLoop] = useState(false)
+  const isShuffle = useSelector(shufflePlaylistSelector)
+  // const [isShuffle, setIsShuffle] = useState(false)
   const clickRef = useRef(null) // progressbar ref
   const [volume, setVolume] = useState(60) // for volume bar
+  const [progress, setProgress] = useState(0)
+
   const handleStart = () => {
     audioElem.current.play()
-    setIsPlaying(true)
+    dispatch(playTrack())
   }
 
   const handleStop = () => {
     audioElem.current.pause()
-    setIsPlaying(false)
+    dispatch(pauseTrack())
   }
 
+  const handleRepeat = () => {
+    dispatch(repeatTrack())
+  }
+
+  const handleShuffle = () => {
+    dispatch(shufflePlaylist())
+  }
   // PLAY/PAUSE
 
   useEffect(() => {
-    audioElem.current.src = selectedTrack.track_file
-    if (isPlaying) handleStart()
-    else handleStop()
+    try {
+      audioElem.current.src = selectedTrack.track_file
+      if (isPlaying) handleStart()
+      else handleStop()
+    } catch (error) {}
   }, [selectedTrack.track_file])
 
   const togglePlay = isPlaying ? handleStop : handleStart
@@ -34,23 +68,28 @@ export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
 
   const prevTrack = () => {
     // console.log("1")
-    const index = list.findIndex((x) => x.id === selectedTrack.id)
-    if (index === 0) {
-      setSelectedTrack(list[list.length - 1])
-    } else {
-      setSelectedTrack(list[index - 1])
-    }
+    const index = isShuffle
+      ? Math.floor(Math.random() * list.length) + 1
+      : list.findIndex((x) => x.id === selectedTrack.id)
+    if (index !== 0) {
+      dispatch(previousTrack(list[index - 1]))
+    } else if (isShuffle) {
+      dispatch(previousTrack(list[index - 1]))
+    } else return
   }
 
   // Next track
-  const nextTrack = () => {
-    // console.log("1")
-    const index = list.findIndex((x) => x.id === selectedTrack.id)
-    if (index === list.length - 1) {
-      setSelectedTrack(list[0])
-    } else {
-      setSelectedTrack(list[index + 1])
-    }
+
+  const playNextTrack = () => {
+    console.log(isShuffle)
+    const index = isShuffle
+      ? Math.floor(Math.random() * (list.length - 1))
+      : list.findIndex((x) => x.id === selectedTrack.id)
+    if (index !== list.length - 1) {
+      dispatch(nextTrack(list[index + 1]))
+    } else if (isShuffle) {
+      dispatch(nextTrack(list[index + 1]))
+    } else return
   }
 
   // TrackBar
@@ -59,14 +98,14 @@ export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
     const { duration } = audioElem.current
     const curTime = audioElem.current.currentTime
     // console.log(duration, curTime)
-    setSelectedTrack({
-      ...selectedTrack,
-      progress: (curTime / duration) * 100,
-      length: duration,
-    })
-    // console.log(selectedTrack)
-    // console.log(duration)
-    // console.log(curTime)
+    setProgress((curTime / duration) * 100)
+    if (!selectedTrack?.length)
+      dispatch(
+        setCurrentTrack({
+          ...selectedTrack,
+          length: duration,
+        })
+      )
   }
 
   // timechange on progressbar
@@ -92,6 +131,7 @@ export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
         ref={audioElem}
         loop={isLoop}
         onTimeUpdate={trackPlaying}
+        onEnded={playNextTrack}
       >
         <source src={selectedTrack.track_file} type="audio/mpeg" />
         <track kind="captions" label="" />
@@ -114,18 +154,18 @@ export default function ControlBar({ selectedTrack, setSelectedTrack, list }) {
             onKeyDown={changeTime}
             role="presentation"
           >
-            <S.BarPlayerProgress
-              style={{ width: `${`${selectedTrack.progress}%`}` }}
-            />
+            <S.BarPlayerProgress style={{ width: `${`${progress}%`}` }} />
           </div>
           <S.BarPlayerBlock>
             <PlayerControls
               togglePlay={togglePlay}
               prevTrack={prevTrack}
-              nextTrack={nextTrack}
+              nextTrack={playNextTrack}
               isLoop={isLoop}
-              setIsLoop={setIsLoop}
+              setIsLoop={handleRepeat}
               isPlaying={isPlaying}
+              isShuffle={isShuffle}
+              setIsShuffle={handleShuffle}
             />
             <TrackInfo selectedTrack={selectedTrack} />
             <Volume volume={volume} setVolume={setVolume} />
@@ -189,8 +229,10 @@ export function PlayerControls({
   prevTrack,
   nextTrack,
   isLoop,
-  setIsLoop,
   isPlaying,
+  isShuffle,
+  setIsShuffle,
+  setIsLoop,
 }) {
   return (
     <S.BarPlayer>
@@ -218,13 +260,16 @@ export function PlayerControls({
         </S.PlayerBtnNext>
         <S.PlayerBtnRepeat
           className={isLoop ? 'active' : ''}
-          onClick={() => (isLoop ? setIsLoop(false) : setIsLoop(true))}
+          onClick={setIsLoop}
         >
           <S.PlayerBtnRepeatSvg alt="repeat">
             <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
           </S.PlayerBtnRepeatSvg>
         </S.PlayerBtnRepeat>
-        <S.PlayerBtnShuffle onClick={() => alert('Еще не реализовано!')}>
+        <S.PlayerBtnShuffle
+          className={isShuffle ? 'active' : ''}
+          onClick={setIsShuffle}
+        >
           <S.PlayerBtnShuffleSvg alt="shuffle">
             <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
           </S.PlayerBtnShuffleSvg>
