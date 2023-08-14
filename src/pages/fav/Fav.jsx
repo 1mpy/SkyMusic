@@ -1,7 +1,16 @@
-function Fav() {
+import CenterBlock from '../../components/main/center_block/center'
+import MainWindow from '../../components/main/main_window/MainWindow'
+
+function Fav({loading, tracklistError}) {
   return (
     <div>
-      <h1>Favorites</h1>
+      {/* <MainWindow loading={loading} tracklistError={tracklistError}> */}
+        <CenterBlock
+          tracklistError={tracklistError}
+          loading={loading}
+          title={'Мои любимые треки'}
+        />
+      {/* </MainWindow> */}
     </div>
   )
 }

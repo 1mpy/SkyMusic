@@ -8,12 +8,13 @@ import Playlist from '../playlist/playlist'
 export default function CenterBlock({
   loading,
   tracklistError,
-  setSelectedTrack
+  setSelectedTrack,
+  title,
 }) {
   return (
     <S.Centerblock>
       <Search />
-      <S.CenterblockHeader>Треки</S.CenterblockHeader>
+      <S.CenterblockHeader>{title}</S.CenterblockHeader>
       <Filter />
       <S.CenterblockContent>
         <S.ContentTitle>
