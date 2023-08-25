@@ -15,15 +15,16 @@ import {
 import { useState } from 'react'
 import { useUser } from '../../contexts/user/user'
 import { useNavigate } from 'react-router-dom'
+import { DislikeIcon, LikeIcon } from '../../player/player_icons/PlayerIcons'
 
 export default function PlaylistItem({ item, loading }) {
   const user = useUser()
   const { theme } = useThemeContext()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const isUserLike = Boolean(
-    item.stared_user?.find((item) => item.id === user.id)
-  )
+  const isUserLike = item.stared_user
+    ? Boolean(item.stared_user?.find((item) => item.id === user.id))
+    : true
   const selectedTrack = useSelector(trackSelector)
   const isPlaying = useSelector(isTrackPlayingSelector)
   const [isLiked, setIsLiked] = useState(isUserLike)
@@ -43,7 +44,7 @@ export default function PlaylistItem({ item, loading }) {
       if (error.status == 401) {
         navigate('/login')
       }
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -56,7 +57,7 @@ export default function PlaylistItem({ item, loading }) {
       if (error.status == 401) {
         navigate('/login')
       }
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -119,14 +120,17 @@ export default function PlaylistItem({ item, loading }) {
                 onClick={() => toggleLikeDislike(item.id)}
               >
                 {isLiked ? (
-                  <use
-                    xlinkHref="img/icon/sprite.svg#icon-like"
-                    fill="#ad61ff"
-                  ></use>
+                  <LikeIcon fill="#ad61ff" />
                 ) : (
-                  <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                  // <use
+                  //   xlinkHref="img/icon/sprite.svg#icon-like"
+                  //   fill="#ad61ff"
+                  // ></use>
+                  <LikeIcon />
+                  // <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                 )}
-                <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                <LikeIcon />
+                {/* <use xlinkHref="img/icon/sprite.svg#icon-like" /> */}
               </S.TrackLikeSvg>
               <S.TrackTimeText>{item.duration_in_seconds}</S.TrackTimeText>
             </>

@@ -7,9 +7,10 @@ export default function Playlist({ loading, tracklistError }) {
   const list = useSelector(pagePlaylistSelector)
   const dispatch = useDispatch()
   const setUpTrack = (item) => {
-    dispatch(setCurrentTrack(item)) 
+    dispatch(setCurrentTrack(item))
     dispatch(setCurrentPlaylist(list))
   }
+  console.log('list', list)
   const tempTracks = Array(10).fill({
     name: '',
     author: '',

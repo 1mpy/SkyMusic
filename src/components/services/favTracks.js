@@ -65,23 +65,32 @@ const getTokenAccess = () => {
   return accessToken
 }
 
+const baseQuery = fetchBaseQuery({ baseUrl: 'https://painassasin.online/catalog/track/' })
+
+const baseQueryWithTokensCheck = async (args, api, extraOptions) => {
+    await checkToken();
+
+    let result = await baseQuery(args, api, extraOptions)
+    if (result.error && result.error.status === 401) {
+        localStorage.removeItem('token')
+    }
+    return result
+}
+
 export const favoriteTracksApi = createApi({
   reducerPath: 'tracksAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://painassasin.online/catalog/track/',
-  }),
-
+  baseQuery: baseQueryWithTokensCheck,
   endpoints: (builder) => ({
     getMyTracks: builder.query({
-      query: async () => {
-        await checkToken()
+      query:  () => {
+        // await checkToken()
 
         return {
           url: 'favorite/all/',
           headers: { Authorization: `Bearer ${getTokenAccess()}` },
         }
       },
-      providesTags: (result = [], error) => [
+      providesTags: (result = []) => [
         ...result.map(({ id }) => ({ type: DATA_TAG.type, id })),
         DATA_TAG,
       ],

@@ -1,16 +1,25 @@
+import { useDispatch } from 'react-redux'
 import CenterBlock from '../../components/main/center_block/center'
-import MainWindow from '../../components/main/main_window/MainWindow'
+import { useEffect, useState } from 'react'
+import { pagePlaylist } from '../../store/actions/creators/tracks'
+import { useGetMyTracksQuery } from '../../components/services/favTracks'
 
-function Fav({loading, tracklistError}) {
+function Fav() {
+  const { data, error, isLoading } = useGetMyTracksQuery()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(pagePlaylist(data))
+  }, [data])
+
   return (
     <div>
-      {/* <MainWindow loading={loading} tracklistError={tracklistError}> */}
-        <CenterBlock
-          tracklistError={tracklistError}
-          loading={loading}
-          title={'Мои любимые треки'}
-        />
-      {/* </MainWindow> */}
+      <CenterBlock
+        hidefilter={true}
+        tracklistError={error}
+        loading={isLoading}
+        title={'Мои любимые треки'}
+      />
     </div>
   )
 }

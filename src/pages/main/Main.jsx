@@ -1,7 +1,8 @@
 import { useDispatch } from 'react-redux'
 import CenterBlock from '../../components/main/center_block/center'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { pagePlaylist } from '../../store/actions/creators/tracks'
+import getTracks from '../../api/api'
 
 function Main() {
   const dispatch = useDispatch()

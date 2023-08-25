@@ -5,12 +5,17 @@ import Playlist from '../playlist/playlist'
 
 // import ControlBar from '../../player/playerbar'
 
-export default function CenterBlock({ loading, tracklistError, title }) {
+export default function CenterBlock({
+  loading,
+  tracklistError,
+  title,
+  hidefilter,
+}) {
   return (
     <S.Centerblock>
       <Search />
       <S.CenterblockHeader>{title}</S.CenterblockHeader>
-      <Filter />
+      {hidefilter ? '' : <Filter />}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.ContentPlaylist $width="447px">Трек</S.ContentPlaylist>

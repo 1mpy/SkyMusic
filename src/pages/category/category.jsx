@@ -1,8 +1,11 @@
 import { useParams } from 'react-router-dom'
 import CenterBlock from '../../components/main/center_block/center'
-import MainWindow from '../../components/main/main_window/MainWindow'
+import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { getCategory } from '../../api/api'
+import { pagePlaylist } from '../../store/actions/creators/tracks'
 
-function Category({ loading, tracklistError }) {
+function Category() {
   const params = useParams()
   const playlistType =
     params.id === `:1`
@@ -11,15 +14,30 @@ function Category({ loading, tracklistError }) {
       ? '100 танцевальных хитов'
       : 'Инди-заряд'
 
+  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
+  const [tracklistError, settracklistError] = useState(null)
+  useEffect(() => {
+    setLoading(true)
+    const id = params.id[1]
+    getCategory(id)
+      .then((tracklist) => {
+        console.log(tracklist)
+        dispatch(pagePlaylist(tracklist)) // имя для удобства
+      })
+      .catch(() => {
+        settracklistError('Не удалось загрузить плейлист, попробуйте позже')
+      })
+      .finally(() => setLoading(false))
+  }, [params.id])
+
   return (
     <div>
-      {/* <MainWindow loading={loading} tracklistError={tracklistError}> */}
-        <CenterBlock
-          tracklistError={tracklistError}
-          loading={loading}
-          title={playlistType}
-        />
-      {/* </MainWindow> */}
+      <CenterBlock
+        tracklistError={tracklistError}
+        loading={loading}
+        title={playlistType}
+      />
     </div>
   )
 }
