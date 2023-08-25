@@ -7,6 +7,7 @@ import {
   CURRENT_PLAYLIST,
   SHUFFLE_PLAYLIST,
   REPEAT_TRACK,
+  PAGE_PLAYLIST,
 } from '../actions/types/tracks.js'
 
 // Начальное состояние
@@ -14,6 +15,7 @@ const initialState = {
   playing: false,
   track: null,
   playlist: [],
+  pagePlaylist: [],
   shuffledPlaylist: false,
   repeat: false,
 }
@@ -77,6 +79,13 @@ function trackReducer(state = initialState, action) {
       return {
         ...state,
         shuffledPlaylist: !state.shuffledPlaylist, // переключатель
+      }
+    }
+
+    case PAGE_PLAYLIST: {
+      return {
+        ...state,
+        pagePlaylist: action.payload,
       }
     }
 

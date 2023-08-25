@@ -54,6 +54,7 @@ export async function loginUser(email, password) {
   // console.log(email)
   // console.log(password)
   // console.log(username)
+  await getTokenData(email, password)
   const response = await fetch('https://painassasin.online/user/login/', {
     method: 'POST',
     body: JSON.stringify({
@@ -87,11 +88,15 @@ export async function loginUser(email, password) {
 }
 
 function saveToken(token) {
-  sessionStorage.setItem('tokenData', JSON.stringify(token))
+  localStorage.setItem('token', token.access)
+  localStorage.setItem('refreshToken', token.refresh)
+  console.log(token)
+  console.log(token.access)
+  console.log(token.refresh)
 }
 
-function getTokenData(login, password) {
-  return fetch('https://painassasin.online/user/token/', {
+async function getTokenData(email, password) {
+  const res = await fetch('https://painassasin.online/user/token/', {
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -100,5 +105,23 @@ function getTokenData(login, password) {
     headers: {
       'content-type': 'application/json',
     },
-  })  
+  })
+  if (res.status === 200) {
+    const tokenData = await res.json()
+    saveToken(tokenData)
+  }
+}
+
+export async function refreshToken(refresh) {
+  const res = await fetch('https://painassasin.online/user/token/refresh/', {
+    method: 'POST',
+    body: JSON.stringify({
+      refresh: refresh,
+    }),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
+  const token = await res.json()
+  return token
 }

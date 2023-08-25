@@ -305,3 +305,7 @@ function Volume({ volume, setVolume }) {
     </S.BarVolumeBlock>
   )
 }
+
+
+
+

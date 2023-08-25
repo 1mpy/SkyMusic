@@ -107,7 +107,7 @@ export const TrackAuthorAlbumLink = styled.a`
   color: #696969;
 `
 
-export const TrackTimeSvg = styled.svg`
+export const TrackLikeSvg = styled.svg`
   width: 14px;
   height: 12px;
   margin-right: 17px;

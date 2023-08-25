@@ -5,12 +5,7 @@ import Playlist from '../playlist/playlist'
 
 // import ControlBar from '../../player/playerbar'
 
-export default function CenterBlock({
-  loading,
-  tracklistError,
-  setSelectedTrack,
-  title,
-}) {
+export default function CenterBlock({ loading, tracklistError, title }) {
   return (
     <S.Centerblock>
       <Search />
@@ -27,12 +22,7 @@ export default function CenterBlock({
             </S.PlaylistTitleSvg>
           </S.ContentPlaylist>
         </S.ContentTitle>
-        <Playlist
-          tracklistError={tracklistError}
-          loading={loading}
-          setSelectedTrack={setSelectedTrack}
-        />
-        {/* <ControlBar loading={loading} /> */}
+        <Playlist tracklistError={tracklistError} loading={loading} />
       </S.CenterblockContent>
     </S.Centerblock>
   )
