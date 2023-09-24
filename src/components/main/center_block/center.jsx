@@ -8,13 +8,14 @@ import Playlist from '../playlist/playlist'
 export default function CenterBlock({
   loading,
   tracklistError,
-  setSelectedTrack
+  title,
+  hidefilter,
 }) {
   return (
     <S.Centerblock>
       <Search />
-      <S.CenterblockHeader>Треки</S.CenterblockHeader>
-      <Filter />
+      <S.CenterblockHeader>{title}</S.CenterblockHeader>
+      {hidefilter ? '' : <Filter />}
       <S.CenterblockContent>
         <S.ContentTitle>
           <S.ContentPlaylist $width="447px">Трек</S.ContentPlaylist>
@@ -26,12 +27,7 @@ export default function CenterBlock({
             </S.PlaylistTitleSvg>
           </S.ContentPlaylist>
         </S.ContentTitle>
-        <Playlist
-          tracklistError={tracklistError}
-          loading={loading}
-          setSelectedTrack={setSelectedTrack}
-        />
-        {/* <ControlBar loading={loading} /> */}
+        <Playlist tracklistError={tracklistError} loading={loading} />
       </S.CenterblockContent>
     </S.Centerblock>
   )

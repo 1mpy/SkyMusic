@@ -7,7 +7,9 @@ import playlist03 from './img/playlist03.png'
 import { useSetUser, useUser } from '../../contexts/user/user'
 
 export function SidebarItem(props) {
-  const url = `./img/playlist0${props.id}.png`
+  const url =
+    props.id === '1' ? playlist01 : props.id === '2' ? playlist02 : playlist03
+  console.log(props)
   return (
     <S.SidebarItem>
       {props.loading ? (
@@ -19,6 +21,10 @@ export function SidebarItem(props) {
       )}
     </S.SidebarItem>
   )
+}
+
+{
+  /* <S.SidebarLink to={`/${props.path}/:${props.id}`}> */
 }
 
 export default function SideBar() {

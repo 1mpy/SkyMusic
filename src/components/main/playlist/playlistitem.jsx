@@ -6,15 +6,63 @@ import { useThemeContext } from '../../contexts/theme-switcher/theme'
 import { setCurrentTrack } from '../../../store/actions/creators/tracks'
 import { trackSelector } from '../../../store/selectors/tracks'
 import { isTrackPlayingSelector } from '../../../store/selectors/tracks'
+import {
+  checkToken,
+  useDislikeTrackMutation,
+  useLikeTrackMutation,
+} from '../../services/favTracks'
+
+import { useState } from 'react'
+import { useUser } from '../../contexts/user/user'
+import { useNavigate } from 'react-router-dom'
+import { DislikeIcon, LikeIcon } from '../../player/player_icons/PlayerIcons'
 
 export default function PlaylistItem({ item, loading }) {
+  const user = useUser()
   const { theme } = useThemeContext()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const isUserLike = item.stared_user
+    ? Boolean(item.stared_user?.find((item) => item.id === user.id))
+    : true
   const selectedTrack = useSelector(trackSelector)
   const isPlaying = useSelector(isTrackPlayingSelector)
+  const [isLiked, setIsLiked] = useState(isUserLike)
+  const [likeTrack, { likeLoading }] = useLikeTrackMutation()
+  const [dislikeTrack, { dislikeLoading }] = useDislikeTrackMutation()
+
   function handeleClick() {
     dispatch(setCurrentTrack(item))
   }
+
+  const handleLike = async (id) => {
+    setIsLiked(true)
+    try {
+      await checkToken()
+      await likeTrack({ id }).unwrap()
+    } catch (error) {
+      if (error.status == 401) {
+        navigate('/login')
+      }
+      // console.log(error)
+    }
+  }
+
+  const handleDislike = async (id) => {
+    setIsLiked(false)
+    try {
+      await checkToken()
+      await dislikeTrack({ id }).unwrap()
+    } catch (error) {
+      if (error.status == 401) {
+        navigate('/login')
+      }
+      // console.log(error)
+    }
+  }
+
+  const toggleLikeDislike = (id) =>
+    isLiked ? handleDislike(id) : handleLike(id)
 
   return (
     <S.PlaylistItem>
@@ -67,9 +115,23 @@ export default function PlaylistItem({ item, loading }) {
             <Skeleton />
           ) : (
             <>
-              <S.TrackTimeSvg alt="time">
-                <use xlinkHref="img/icon/sprite.svg#icon-like" />
-              </S.TrackTimeSvg>
+              <S.TrackLikeSvg
+                alt="time"
+                onClick={() => toggleLikeDislike(item.id)}
+              >
+                {isLiked ? (
+                  <LikeIcon fill="#ad61ff" />
+                ) : (
+                  // <use
+                  //   xlinkHref="img/icon/sprite.svg#icon-like"
+                  //   fill="#ad61ff"
+                  // ></use>
+                  <LikeIcon />
+                  // <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                )}
+                <LikeIcon />
+                {/* <use xlinkHref="img/icon/sprite.svg#icon-like" /> */}
+              </S.TrackLikeSvg>
               <S.TrackTimeText>{item.duration_in_seconds}</S.TrackTimeText>
             </>
           )}

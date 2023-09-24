@@ -1,15 +1,16 @@
 import PlaylistItem from './playlistitem'
 import ContentPlaylist from './playlist.styles'
-import { useSelector } from 'react-redux'
-import { playlistSelector } from '../../../store/selectors/tracks'
+import { useDispatch, useSelector } from 'react-redux'
+import { pagePlaylistSelector } from '../../../store/selectors/tracks'
 
-export default function Playlist({
-  loading,
-  tracklistError,
-  setSelectedTrack,
-}) {
-  const list = useSelector(playlistSelector)
-
+export default function Playlist({ loading, tracklistError }) {
+  const list = useSelector(pagePlaylistSelector)
+  const dispatch = useDispatch()
+  const setUpTrack = (item) => {
+    dispatch(setCurrentTrack(item))
+    dispatch(setCurrentPlaylist(list))
+  }
+  console.log('list', list)
   const tempTracks = Array(10).fill({
     name: '',
     author: '',
@@ -25,12 +26,8 @@ export default function Playlist({
         <PlaylistItem
           key={item?.id}
           item={item}
-          // title={item?.name}
-          // author={item?.author}
-          // album={item?.album}
-          // time={item?.duration_in_seconds}
           loading={loading}
-          onClick={() => setSelectedTrack(item)}
+          onClick={() => setUpTrack(item)}
         />
       ))}
     </ContentPlaylist>

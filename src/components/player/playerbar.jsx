@@ -20,6 +20,18 @@ import {
   repeatTrack,
   shufflePlaylist,
 } from '../../store/actions/creators/tracks'
+import {
+  DislikeIcon,
+  LikeIcon,
+  NextIcon,
+  PauseIcon,
+  PlayIcon,
+  PrevIcon,
+  RepeatIcon,
+  ShuffleIcon,
+  VolumeIcon,
+} from './player_icons/PlayerIcons'
+import { useUser } from '../contexts/user/user'
 
 export default function ControlBar() {
   const dispatch = useDispatch()
@@ -177,6 +189,39 @@ export default function ControlBar() {
 }
 
 export function TrackInfo({ loading = false, selectedTrack }) {
+  const user = useUser()
+  const isUserLike = Boolean(
+    selectedTrack.stared_user?.find((item) => item.id === user.id)
+  )
+
+  const handleLike = async (id) => {
+    // setIsLiked(true)
+    try {
+      await checkToken()
+      await likeTrack({ id }).unwrap()
+    } catch (error) {
+      if (error.status == 401) {
+        navigate('/login')
+      }
+      // console.log(error)
+    }
+  }
+
+  const handleDislike = async (id) => {
+    // setIsLiked(false)
+    try {
+      await checkToken()
+      await dislikeTrack({ id }).unwrap()
+    } catch (error) {
+      if (error.status == 401) {
+        navigate('/login')
+      }
+      // console.log(error)
+    }
+  }
+
+  const toggleLikeDislike = (id) =>
+    isUserLike ? handleDislike(id) : handleLike(id)
   return (
     <S.TrackPlay>
       <S.TrackPlayContain>
@@ -210,15 +255,13 @@ export function TrackInfo({ loading = false, selectedTrack }) {
       </S.TrackPlayContain>
       <S.TrackPlayLlikeAndDis>
         <S.TrackPlayLike>
-          <S.TrackPlayLlikeSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-like" />
+          <S.TrackPlayLlikeSvg
+            onClick={() => toggleLikeDislike(selectedTrack.id)}
+          >
+            <LikeIcon fill={isUserLike ? '#ad61ff' : '#696969'} />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-like" /> */}
           </S.TrackPlayLlikeSvg>
         </S.TrackPlayLike>
-        <S.TrackPlayDislike>
-          <S.TrackPlayDislikeSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-dislike" />
-          </S.TrackPlayDislikeSvg>
-        </S.TrackPlayDislike>
       </S.TrackPlayLlikeAndDis>
     </S.TrackPlay>
   )
@@ -239,23 +282,27 @@ export function PlayerControls({
       <S.PlayerControls>
         <S.PlayerBtnPrev onClick={prevTrack}>
           <S.PlayerBtnPrevSvg alt="prev">
-            <use xlinkHref="img/icon/sprite.svg#icon-prev" />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-prev" /> */}
+            <PrevIcon />
           </S.PlayerBtnPrevSvg>
         </S.PlayerBtnPrev>
         <S.PlayerBtnPlay onClick={togglePlay}>
           {isPlaying ? (
             <S.PlayerBtnPauseSvg alt="pause">
-              <use xlinkHref="img/icon/sprite.svg#icon-pause" />
+              {/* <use xlinkHref="img/icon/sprite.svg#icon-pause" /> */}
+              <PauseIcon />
             </S.PlayerBtnPauseSvg>
           ) : (
             <S.PlayerBtnPlaySvg alt="play">
-              <use xlinkHref="img/icon/sprite.svg#icon-play" />
+              {/* <use xlinkHref="img/icon/sprite.svg#icon-play" /> */}
+              <PlayIcon />
             </S.PlayerBtnPlaySvg>
           )}
         </S.PlayerBtnPlay>
         <S.PlayerBtnNext onClick={nextTrack}>
           <S.PlayerBtnNextSvg alt="next">
-            <use xlinkHref="img/icon/sprite.svg#icon-next" />
+            <NextIcon />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-next" /> */}
           </S.PlayerBtnNextSvg>
         </S.PlayerBtnNext>
         <S.PlayerBtnRepeat
@@ -263,7 +310,8 @@ export function PlayerControls({
           onClick={setIsLoop}
         >
           <S.PlayerBtnRepeatSvg alt="repeat">
-            <use xlinkHref="img/icon/sprite.svg#icon-repeat" />
+            <RepeatIcon />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-repeat" /> */}
           </S.PlayerBtnRepeatSvg>
         </S.PlayerBtnRepeat>
         <S.PlayerBtnShuffle
@@ -271,7 +319,8 @@ export function PlayerControls({
           onClick={setIsShuffle}
         >
           <S.PlayerBtnShuffleSvg alt="shuffle">
-            <use xlinkHref="img/icon/sprite.svg#icon-shuffle" />
+            <ShuffleIcon />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-shuffle" /> */}
           </S.PlayerBtnShuffleSvg>
         </S.PlayerBtnShuffle>
         <trackInfo />
@@ -286,7 +335,8 @@ function Volume({ volume, setVolume }) {
       <S.VolumeContent>
         <S.VolumeImg>
           <S.VolumeSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-volume" />
+            <VolumeIcon />
+            {/* <use xlinkHref="img/icon/sprite.svg#icon-volume" /> */}
           </S.VolumeSvg>
         </S.VolumeImg>
         <S.VolumeProgress>

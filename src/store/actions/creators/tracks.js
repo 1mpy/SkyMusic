@@ -7,6 +7,7 @@ import {
   CURRENT_PLAYLIST,
   SHUFFLE_PLAYLIST,
   REPEAT_TRACK,
+  PAGE_PLAYLIST,
 } from '../types/tracks.js'
 
 export const setCurrentTrack = (item) => ({
@@ -43,4 +44,9 @@ export const shufflePlaylist = () => ({
 
 export const repeatTrack = () => ({
   type: REPEAT_TRACK,
+})
+
+export const pagePlaylist = (playlist) => ({
+  type: PAGE_PLAYLIST,
+  payload: playlist,
 })

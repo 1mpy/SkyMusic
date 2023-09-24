@@ -7,3 +7,5 @@ export const isTrackPlayingSelector = (store) => store.player.playing
 export const shufflePlaylistSelector = (store) => store.player.shuffledPlaylist
 
 export const repeatTrackSelector = (store) => store.player.repeat
+
+export const pagePlaylistSelector = (store) => store.player.pagePlaylist
