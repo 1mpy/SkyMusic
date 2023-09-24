@@ -8,6 +8,10 @@ import {
   SHUFFLE_PLAYLIST,
   REPEAT_TRACK,
   PAGE_PLAYLIST,
+  FILTER_AUTHOR,
+  FILTER_YEAR,
+  FILTER_GENRE,
+  SEARCH,
 } from '../actions/types/tracks.js'
 
 // Начальное состояние
@@ -18,6 +22,8 @@ const initialState = {
   pagePlaylist: [],
   shuffledPlaylist: false,
   repeat: false,
+  filter: { year: false, author: [], genre: [] },
+  search: '',
 }
 
 // Reducer
@@ -86,6 +92,40 @@ function trackReducer(state = initialState, action) {
       return {
         ...state,
         pagePlaylist: action.payload,
+      }
+    }
+
+    case FILTER_AUTHOR: {
+      const newFilter = { ...state.filter }
+      newFilter.author = action.payload
+      return {
+        ...state,
+        filter: newFilter,
+      }
+    }
+
+    case FILTER_YEAR: {
+      const newFilter = { ...state.filter }
+      newFilter.year = action.payload
+      return {
+        ...state,
+        filter: newFilter,
+      }
+    }
+
+    case FILTER_GENRE: {
+      const newFilter = { ...state.filter }
+      newFilter.genre = action.payload
+      return {
+        ...state,
+        filter: newFilter,
+      }
+    }
+
+    case SEARCH: {
+      return {
+        ...state,
+        search: action.payload,
       }
     }
 

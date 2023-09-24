@@ -8,6 +8,10 @@ import {
   SHUFFLE_PLAYLIST,
   REPEAT_TRACK,
   PAGE_PLAYLIST,
+  FILTER_AUTHOR,
+  FILTER_YEAR,
+  FILTER_GENRE,
+  SEARCH,
 } from '../types/tracks.js'
 
 export const setCurrentTrack = (item) => ({
@@ -49,4 +53,24 @@ export const repeatTrack = () => ({
 export const pagePlaylist = (playlist) => ({
   type: PAGE_PLAYLIST,
   payload: playlist,
+})
+
+export const filterAuthor = (authorsList) => ({
+  type: FILTER_AUTHOR,
+  payload: authorsList,
+})
+
+export const filterYear = (releaseYear) => ({
+  type: FILTER_YEAR,
+  payload: releaseYear,
+})
+
+export const filterGenre = (genresList) => ({
+  type: FILTER_GENRE,
+  payload: genresList,
+})
+
+export const searchAction = (value) => ({
+  type: SEARCH,
+  payload: value,
 })
