@@ -65,16 +65,18 @@ const getTokenAccess = () => {
   return accessToken
 }
 
-const baseQuery = fetchBaseQuery({ baseUrl: 'https://painassasin.online/catalog/track/' })
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'https://skypro-music-api.skyeng.tech/catalog/track/',
+})
 
 const baseQueryWithTokensCheck = async (args, api, extraOptions) => {
-    await checkToken();
+  await checkToken()
 
-    let result = await baseQuery(args, api, extraOptions)
-    if (result.error && result.error.status === 401) {
-        localStorage.removeItem('token')
-    }
-    return result
+  let result = await baseQuery(args, api, extraOptions)
+  if (result.error && result.error.status === 401) {
+    localStorage.removeItem('token')
+  }
+  return result
 }
 
 export const favoriteTracksApi = createApi({
@@ -82,7 +84,7 @@ export const favoriteTracksApi = createApi({
   baseQuery: baseQueryWithTokensCheck,
   endpoints: (builder) => ({
     getMyTracks: builder.query({
-      query:  () => {
+      query: () => {
         // await checkToken()
 
         return {

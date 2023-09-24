@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
 export const Centerblock = styled.div`
+  height: 100%;
   width: auto;
   -webkit-box-flex: 3;
   -ms-flex-positive: 3;
@@ -17,7 +18,9 @@ export const CenterblockHeader = styled.h2`
   margin-bottom: 45px;
 `
 
-export const CenterblockContent = styled.h2`
+export const CenterblockContent = styled.div`
+  height: -webkit-fill-available;
+  padding-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

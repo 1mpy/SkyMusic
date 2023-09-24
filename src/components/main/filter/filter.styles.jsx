@@ -52,7 +52,16 @@ export const FilterWrapper = styled.div`
 
 export const FilterList = styled.ul``
 
-export const FilterItem = styled.li``
+export const FilterItem = styled.li`
+  margin: 2px;
+  ${(props) =>
+    props.selected &&
+    `
+  color: #ad61ff;
+
+`}
+  cursor: pointer;
+`
 
 export const FilterButton = styled.div`
   font-style: normal;

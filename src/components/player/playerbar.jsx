@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useMemo } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from './playerbar.styles'
@@ -10,6 +10,7 @@ import {
   isTrackPlayingSelector,
   repeatTrackSelector,
   shufflePlaylistSelector,
+  pagePlaylistSelector,
 } from '../../store/selectors/tracks'
 import {
   setCurrentTrack,
@@ -19,6 +20,7 @@ import {
   previousTrack,
   repeatTrack,
   shufflePlaylist,
+  pagePlaylist,
 } from '../../store/actions/creators/tracks'
 import {
   DislikeIcon,
@@ -32,6 +34,12 @@ import {
   VolumeIcon,
 } from './player_icons/PlayerIcons'
 import { useUser } from '../contexts/user/user'
+import {
+  checkToken,
+  useDislikeTrackMutation,
+  useLikeTrackMutation,
+} from '../services/favTracks'
+import { deepCopy } from '../utils/deepCopy'
 
 export default function ControlBar() {
   const dispatch = useDispatch()
@@ -93,7 +101,6 @@ export default function ControlBar() {
   // Next track
 
   const playNextTrack = () => {
-    console.log(isShuffle)
     const index = isShuffle
       ? Math.floor(Math.random() * (list.length - 1))
       : list.findIndex((x) => x.id === selectedTrack.id)
@@ -190,16 +197,36 @@ export default function ControlBar() {
 
 export function TrackInfo({ loading = false, selectedTrack }) {
   const user = useUser()
-  const isUserLike = Boolean(
-    selectedTrack.stared_user?.find((item) => item.id === user.id)
-  )
+
+  const tracklist = useSelector(pagePlaylistSelector)
+  const isUserLike = useMemo(() => {
+    const track = tracklist?.find((elem) => elem.id === selectedTrack.id)
+    console.log(track)
+    if (track && !track?.stared_user) return true
+    if (track) return track.stared_user?.find((item) => item.id === user.id)
+    else return selectedTrack.stared_user?.find((item) => item.id === user.id)
+  }, [tracklist, selectedTrack, user])
+  const dispatch = useDispatch()
+  const [isLiked, setIsLiked] = useState(isUserLike)
+  const [likeTrack, { likeLoading }] = useLikeTrackMutation()
+  const [dislikeTrack, { dislikeLoading }] = useDislikeTrackMutation()
+  useEffect(() => {
+    setIsLiked(isUserLike)
+  }, [isUserLike])
 
   const handleLike = async (id) => {
-    // setIsLiked(true)
+    setIsLiked(true)
     try {
       await checkToken()
       await likeTrack({ id }).unwrap()
+      const newList = deepCopy(tracklist)
+
+      const item = newList?.find((elem) => elem.id === id)
+      if (!item) return
+      item.stared_user.push(user)
+      dispatch(pagePlaylist(newList))
     } catch (error) {
+      // console.log(error)
       if (error.status == 401) {
         navigate('/login')
       }
@@ -208,20 +235,31 @@ export function TrackInfo({ loading = false, selectedTrack }) {
   }
 
   const handleDislike = async (id) => {
-    // setIsLiked(false)
+    setIsLiked(false)
     try {
       await checkToken()
       await dislikeTrack({ id }).unwrap()
+      const newList = deepCopy(tracklist)
+      const item = newList?.find((elem) => elem.id === id)
+      console.log('item1', item)
+      console.log(tracklist)
+      if (!item) return
+      const index = item.stared_user.findIndex((i) => i.id === user.id)
+      item.stared_user.splice(index, 1)
+
+      console.log(item)
+      dispatch(pagePlaylist(newList))
     } catch (error) {
       if (error.status == 401) {
         navigate('/login')
       }
-      // console.log(error)
+      console.log(error)
     }
   }
 
-  const toggleLikeDislike = (id) =>
-    isUserLike ? handleDislike(id) : handleLike(id)
+  const toggleLikeDislike = (id) => {
+    return isLiked ? handleDislike(id) : handleLike(id)
+  }
   return (
     <S.TrackPlay>
       <S.TrackPlayContain>
@@ -258,8 +296,7 @@ export function TrackInfo({ loading = false, selectedTrack }) {
           <S.TrackPlayLlikeSvg
             onClick={() => toggleLikeDislike(selectedTrack.id)}
           >
-            <LikeIcon fill={isUserLike ? '#ad61ff' : '#696969'} />
-            {/* <use xlinkHref="img/icon/sprite.svg#icon-like" /> */}
+            {isLiked ? <LikeIcon fill="#ad61ff" /> : <LikeIcon />}
           </S.TrackPlayLlikeSvg>
         </S.TrackPlayLike>
       </S.TrackPlayLlikeAndDis>

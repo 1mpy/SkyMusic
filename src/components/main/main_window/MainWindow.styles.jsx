@@ -1,6 +1,7 @@
 import { styled } from 'styled-components'
 
 const Main = styled.main`
+  height: 100%;
   -webkit-box-flex: 1;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;

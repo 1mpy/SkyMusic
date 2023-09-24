@@ -1,6 +1,6 @@
 async function getTracks() {
   const response = await fetch(
-    'https://painassasin.online/catalog/track/all/',
+    'https://skypro-music-api.skyeng.tech/catalog/track/all/',
     {
       method: 'GET',
     }
@@ -17,18 +17,21 @@ export async function registerUser(email, password, username) {
   // console.log(email)
   // console.log(password)
   // console.log(username)
-  const response = await fetch('https://painassasin.online/user/signup/', {
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-      username,
-    }),
-    headers: {
-      // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-      'content-type': 'application/json',
-    },
-  })
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/signup/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+        username,
+      }),
+      headers: {
+        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
+        'content-type': 'application/json',
+      },
+    }
+  )
   if (response.ok) {
     const data = await response.json()
     return data
@@ -55,17 +58,20 @@ export async function loginUser(email, password) {
   // console.log(password)
   // console.log(username)
   await getTokenData(email, password)
-  const response = await fetch('https://painassasin.online/user/login/', {
-    method: 'POST',
-    body: JSON.stringify({
-      email,
-      password,
-    }),
-    headers: {
-      // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-      'content-type': 'application/json',
-    },
-  })
+  const response = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/login/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+      headers: {
+        // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
+        'content-type': 'application/json',
+      },
+    }
+  )
   if (response.ok) {
     const data = await response.json()
     return data
@@ -96,7 +102,7 @@ function saveToken(token) {
 }
 
 async function getTokenData(email, password) {
-  const res = await fetch('https://painassasin.online/user/token/', {
+  const res = await fetch('https://skypro-music-api.skyeng.tech/user/token/', {
     method: 'POST',
     body: JSON.stringify({
       email: email,
@@ -113,22 +119,25 @@ async function getTokenData(email, password) {
 }
 
 export async function refreshToken(refresh) {
-  const res = await fetch('https://painassasin.online/user/token/refresh/', {
-    method: 'POST',
-    body: JSON.stringify({
-      refresh: refresh,
-    }),
-    headers: {
-      'content-type': 'application/json',
-    },
-  })
+  const res = await fetch(
+    'https://skypro-music-api.skyeng.tech/user/token/refresh/',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        refresh: refresh,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }
+  )
   const token = await res.json()
   return token
 }
 
 export async function getCategory(id) {
   const response = await fetch(
-    `https://painassasin.online/catalog/selection/${id}/`,
+    `https://skypro-music-api.skyeng.tech/catalog/selection/${id}/`,
     {
       method: 'GET',
     }
